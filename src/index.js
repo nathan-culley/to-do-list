@@ -5,8 +5,6 @@ import Task from './tasks.js';
 
 const projects = [];
 
-
-
 const project0 = new Project('Default Project', 'Your tasks will go here by default', '2123-02-11', 'High');
 
 projects.unshift(project0);

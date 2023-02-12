@@ -1,3 +1,5 @@
+export { createProject };
+
 export default class Project {
     constructor(title, description, dueDate, notes) {
       this.title = title;
@@ -11,4 +13,10 @@ export default class Project {
     addTask(task) {
       this.taskList.push(task);
     }
-  }
+}
+
+function createProject(title, description, dueDate, notes) {
+    const projectName = `project${projects.length}`;
+    window[projectName] = new Project(title, description, dueDate, notes);
+    projects.push(window[projectName]);
+}

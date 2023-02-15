@@ -6,6 +6,8 @@ function Ui() {
     content.setAttribute("id", "content");
     document.body.appendChild(content);
 
+    removeAllChildNodes(content);
+
     createDisplay(content);
 
     
@@ -44,6 +46,7 @@ function createInput(content) {
     const addTitle = document.createElement("input");
     addTitle.setAttribute("type", "text");
     addTitle.setAttribute("id", "add-title");
+    addTitle.setAttribute("name", "add-title");
     titleInputLabel.appendChild(addTitle);
 
     //add description
@@ -59,6 +62,7 @@ function createInput(content) {
     const addDescription = document.createElement("input");
     addDescription.setAttribute("type", "text");
     addDescription.setAttribute("id", "add-description");
+    addDescription.setAttribute("name", "add-description");
     descriptionInputLabel.appendChild(addDescription);
 
     //add due date
@@ -74,6 +78,7 @@ function createInput(content) {
     const addDueDate = document.createElement("input");
     addDueDate.setAttribute("type", "text");
     addDueDate.setAttribute("id", "add-due-date");
+    addDueDate.setAttribute("name", "add-due-date");
     dueDateInputLabel.appendChild(addDueDate);
 
     //add notes
@@ -89,11 +94,28 @@ function createInput(content) {
     const addNotes = document.createElement("input");
     addNotes.setAttribute("type", "text");
     addNotes.setAttribute("id", "add-notes");
+    addNotes.setAttribute("name", "add-notes");
     notesInputLabel.appendChild(addNotes);
 
+    //add submit button
     const addProjectButton = document.createElement("button");
     addProjectButton.textContent = "Add Project";
+    addProjectButton.setAttribute("type", "submit");
     addProjectSection.appendChild(addProjectButton);
+
+    addProjectButton.addEventListener("click", function() {
+        event.preventDefault();
+
+        const formData = new FormData(addProjectSection);
+        const title = formData.get('add-title');
+        const description = formData.get('add-description');
+        const dueDate = formData.get('add-due-date');
+        const notes = formData.get('add-notes');
+
+        createProject(title, description, dueDate, notes);
+
+        console.log(projects);
+    })
 }
 
 //function to display list of projects
@@ -131,6 +153,12 @@ function createTaskList(proj, project) {
             todo.textContent = task.title;
             tasks.appendChild(todo);
         }
+    }
+}
+
+function removeAllChildNodes(parent) {
+    while (parent.firstChild) {
+        parent.removeChild(parent.firstChild);
     }
 }
 

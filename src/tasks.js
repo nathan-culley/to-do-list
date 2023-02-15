@@ -21,4 +21,3 @@ function markTaskAsComplete(task) {
 
 export { Task, createTask, markTaskAsComplete };
 
-// DONE NOW

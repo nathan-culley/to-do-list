@@ -27,4 +27,3 @@ function markProjectAsComplete(project) {
 
 export { Project, createProject, projects, markProjectAsComplete };
 
-// DONE NOW

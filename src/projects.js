@@ -1,6 +1,6 @@
-export { createProject };
+const projects = [];
 
-export default class Project {
+class Project {
     constructor(title, description, dueDate, notes) {
       this.title = title;
       this.description = description;
@@ -20,3 +20,11 @@ function createProject(title, description, dueDate, notes) {
     window[projectName] = new Project(title, description, dueDate, notes);
     projects.push(window[projectName]);
 }
+
+function markProjectAsComplete(project) {
+  project.completed = true;
+}
+
+export { Project, createProject, projects, markProjectAsComplete };
+
+// DONE NOW

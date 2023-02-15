@@ -16,6 +16,7 @@ module.exports = {
   plugins: [
     new HtmlWebpackPlugin({
       title: 'To-Do Wizard',
+      inject: 'body',
     }),
   ],
   output: {

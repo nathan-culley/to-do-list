@@ -6,7 +6,7 @@ function Ui() {
     content.setAttribute("id", "content");
     document.body.appendChild(content);
 
-    removeAllChildNodes(content);
+    
 
     createDisplay(content);
 
@@ -16,6 +16,8 @@ function Ui() {
 //function to create overall display
 
 function createDisplay(content) {
+    removeAllChildNodes(content);
+    
     const title = document.createElement("h1");
     title.setAttribute("id","title");
     title.textContent = "To-Do Wizard";
@@ -115,6 +117,8 @@ function createInput(content) {
         createProject(title, description, dueDate, notes);
 
         console.log(projects);
+        
+        createDisplay(content);
     })
 }
 

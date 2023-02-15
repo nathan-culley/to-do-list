@@ -23,8 +23,8 @@ function createDisplay(content) {
     title.textContent = "To-Do Wizard";
     content.appendChild(title);
     createInput(content);
-    createProjectList(content);
-    createTaskList(content);
+    displayProjectList(content);
+    displayTaskList(content);
 }
 
 //function to create new-project form
@@ -124,7 +124,7 @@ function createInput(content) {
 
 //function to display list of projects
 
-function createProjectList() {
+function displayProjectList() {
     const projectListSection = document.createElement("div");
     content.appendChild(projectListSection);
     
@@ -133,20 +133,68 @@ function createProjectList() {
     projectListSection.appendChild(projectList);
     projectList.innerHTML = "<h3>Current Projects:</h3>";
     for (let project of projects) {
+        //create the item representing the project and add it to the project list
         const proj = document.createElement("div");
         proj.setAttribute("id", `project${projects.indexOf(project)}`);
         proj.textContent = project.title;
         projectList.appendChild(proj);
-        createTaskList(proj, project);
+
+        //give the project item a child div that has two child divs
+        const expandProj = document.createElement("div");
+        expandProj.className = "expand-proj";
+        proj.appendChild(expandProj);
+        
+        const projDetails = document.createElement("div");
+        projDetails.className = "proj-details";
+        const projTasks = document.createElement("div");
+        projTasks.className = "proj-tasks";
+
+        expandProj.appendChild(projDetails);
+        expandProj.appendChild(projTasks);
+        
+        displayProjectDetails(projDetails, project);
+        displayTaskList(projTasks, project);
     }
+}
+
+//function to display info about project
+
+function displayProjectDetails(projDetails, project) {
+    const details = document.createElement("ul");
+    projDetails.appendChild(details);
+
+    //display description
+    const description = document.createElement("li");
+    description.textContent = `Description: ${project.description}`;
+    details.appendChild(description);
+
+    //display due date
+    const dueDate = document.createElement("li");
+    dueDate.textContent = `Due Date: ${project.dueDate}`;
+    details.appendChild(dueDate);
+
+    //display notes
+    const notes = document.createElement("li");
+    notes.textContent = `Notes: ${project.notes}`;
+    details.appendChild(notes);
+
+    //display completion
+    const completion = document.createElement("li");
+    if (project.completion == true) {
+        completion.textContent = 'Completed: Yes';
+    }
+    else {
+        completion.textContent = "Completed: No";
+    }
+    details.appendChild(completion);
 }
 
 //function to display list of tasks under each project
 
-function createTaskList(proj, project) {
-    console.log("before");
+function displayTaskList(proj, project) {
+
     if (project.taskList != undefined) {
-        console.log("after");
+
         const tasks = document.createElement("ul");
         proj.appendChild(tasks);
     

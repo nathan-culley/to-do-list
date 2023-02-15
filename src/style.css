@@ -1,3 +1,4 @@
-.hello {
-    color: red;
-  }
+.input-label {
+  display: flex;
+  flex-direction: column;
+}

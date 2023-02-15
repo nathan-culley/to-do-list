@@ -14,9 +14,10 @@ function Ui() {
 //function to create overall display
 
 function createDisplay(content) {
-    console.log("createDisplay");
-    console.log(content);
-    console.log(projects);
+    const title = document.createElement("h1");
+    title.setAttribute("id","title");
+    title.textContent = "To-Do Wizard";
+    content.appendChild(title);
     createInput(content);
     createProjectList(content);
     createTaskList(content);
@@ -25,31 +26,74 @@ function createDisplay(content) {
 //function to create new-project form
 
 function createInput(content) {
-    const newProjectSection = document.createElement("div");
-    content.appendChild(newProjectSection);
-    newProjectSection.innerHTML = "<h1>Add New Project</h1>"
+    const addProjectSection = document.createElement("form");
+    addProjectSection.setAttribute("id", "add-project");
+    content.appendChild(addProjectSection);
+    addProjectSection.innerHTML = "<h3>Add New Project</h3>"
 
     //add title
+    const titleInputLabel = document.createElement("div");
+    titleInputLabel.className = "input-label";
+    addProjectSection.appendChild(titleInputLabel);
+
+    const addTitleLabel = document.createElement("label");
+    addTitleLabel.setAttribute("for", "add-title");
+    addTitleLabel.textContent = "Project Title";
+    titleInputLabel.appendChild(addTitleLabel);
+    
     const addTitle = document.createElement("input");
     addTitle.setAttribute("type", "text");
-    newProjectSection.appendChild(addTitle);
+    addTitle.setAttribute("id", "add-title");
+    titleInputLabel.appendChild(addTitle);
 
     //add description
+    const descriptionInputLabel = document.createElement("div");
+    descriptionInputLabel.className = "input-label";
+    addProjectSection.appendChild(descriptionInputLabel);
+
+    const addDescriptionLabel = document.createElement("label");
+    addDescriptionLabel.setAttribute("for", "add-description");
+    addDescriptionLabel.textContent = "Project Description";
+    descriptionInputLabel.appendChild(addDescriptionLabel);
+
     const addDescription = document.createElement("input");
     addDescription.setAttribute("type", "text");
-    newProjectSection.appendChild(addDescription);
+    addDescription.setAttribute("id", "add-description");
+    descriptionInputLabel.appendChild(addDescription);
 
     //add due date
+    const dueDateInputLabel = document.createElement("div");
+    dueDateInputLabel.className = "input-label";
+    addProjectSection.appendChild(dueDateInputLabel);
+
+    const addDueDateLabel = document.createElement("label");
+    addDueDateLabel.setAttribute("for", "add-due-date");
+    addDueDateLabel.textContent = "Project Due Date";
+    dueDateInputLabel.appendChild(addDueDateLabel);
+
     const addDueDate = document.createElement("input");
     addDueDate.setAttribute("type", "text");
-    newProjectSection.appendChild(addDueDate);
+    addDueDate.setAttribute("id", "add-due-date");
+    dueDateInputLabel.appendChild(addDueDate);
 
     //add notes
+    const notesInputLabel = document.createElement("div");
+    notesInputLabel.className = "input-label";
+    addProjectSection.appendChild(notesInputLabel);
+
+    const addNotesLabel = document.createElement("label");
+    addNotesLabel.setAttribute("for", "add-notes");
+    addNotesLabel.textContent = "Project Notes";
+    notesInputLabel.appendChild(addNotesLabel);
+
     const addNotes = document.createElement("input");
     addNotes.setAttribute("type", "text");
-    newProjectSection.appendChild(addNotes);
+    addNotes.setAttribute("id", "add-notes");
+    notesInputLabel.appendChild(addNotes);
 
-
+    const addProjectButton = document.createElement("button");
+    addProjectButton.textContent = "Add Project";
+    addProjectSection.appendChild(addProjectButton);
 }
 
 //function to display list of projects
@@ -59,11 +103,11 @@ function createProjectList() {
     content.appendChild(projectListSection);
     
 
-    const projectList = document.createElement("ul");
+    const projectList = document.createElement("div");
     projectListSection.appendChild(projectList);
-    projectList.textContent = "Current Projects:";
+    projectList.innerHTML = "<h3>Current Projects:</h3>";
     for (let project of projects) {
-        const proj = document.createElement("li");
+        const proj = document.createElement("div");
         proj.setAttribute("id", `project${projects.indexOf(project)}`);
         proj.textContent = project.title;
         projectList.appendChild(proj);
@@ -74,31 +118,20 @@ function createProjectList() {
 //function to display list of tasks under each project
 
 function createTaskList(proj, project) {
-    const tasks = document.createElement("ul");
-    proj.appendChild(tasks);
-
-    console.log(project.taskList);
+    console.log("before");
+    if (project.taskList != undefined) {
+        console.log("after");
+        const tasks = document.createElement("ul");
+        proj.appendChild(tasks);
     
-    for (let task of project.taskList) {
-        const todo = document.createElement("li");
-        todo.textContent = task.title;
-        tasks.appendChild(todo);
+        console.log(project.taskList);
+        
+        for (let task of project.taskList) {
+            const todo = document.createElement("li");
+            todo.textContent = task.title;
+            tasks.appendChild(todo);
+        }
     }
 }
 
 export { Ui };
-
-
-
-
-// const newProjectBtn = document.createElement("button");
-//     content.appendChild(newProjectBtn);
-//     newProjectBtn.addEventListener("click", function() {
-//         createProject('Project 2', 'My second project', '2023-03-02', 'Medium');
-//     });
-
-//     const consoleBtn = document.createElement("button");
-//     content.appendChild(consoleBtn);
-//     consoleBtn.addEventListener("click", function() {
-//         console.log(projects);
-//     })

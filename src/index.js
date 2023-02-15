@@ -36,6 +36,8 @@ project0.addTask(task1);
 createProject('Project 2', 'My second project', '2023-03-02', 'Medium');
 createTask(projects[0], 'Task 1', 'My first task', '2023-03-03', 'High', 'Important');
 
+createTask(projects[1], 'Task 1', 'My first task', '2023-03-03', 'High', 'Important');
+
 console.log(projects);
 
 markTaskAsComplete(project0.taskList[0]);

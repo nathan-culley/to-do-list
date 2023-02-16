@@ -1,3 +1,5 @@
+// import { Ui } from './ui';
+
 const projects = [];
 
 class Project {
@@ -22,7 +24,13 @@ function createProject(title, description, dueDate, notes) {
 }
 
 function markProjectAsComplete(project) {
-  project.completed = true;
+  if (project.completed == true) {
+    project.completed = false;
+  }
+  else if (project.completed == false) {
+    project.completed = true;
+  }
+  console.log(projects);
 }
 
 export { Project, createProject, projects, markProjectAsComplete };

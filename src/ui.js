@@ -107,19 +107,19 @@ function createInput(content) {
     addProjectSection.appendChild(addProjectButton);
 
     addProjectButton.addEventListener("click", function() {
-        event.preventDefault();
+        // event.preventDefault();
 
-        const formData = new FormData(addProjectSection);
-        const title = formData.get('add-title');
-        const description = formData.get('add-description');
-        const dueDate = formData.get('add-due-date');
-        const notes = formData.get('add-notes');
+        // const formData = new FormData(addProjectSection);
+        // const title = formData.get('add-title');
+        // const description = formData.get('add-description');
+        // const dueDate = formData.get('add-due-date');
+        // const notes = formData.get('add-notes');
 
-        createProject(title, description, dueDate, notes);
+        // createProject(title, description, dueDate, notes);
 
-        console.log(projects);
+        // console.log(projects);
         
-        createDisplay(content);
+        // createDisplay(content);
     })
 }
 
@@ -152,13 +152,12 @@ function displayProjectList() {
         completeProjBtn.textContent = "Toggle Complete";
         proj.appendChild(completeProjBtn);
         completeProjBtn.addEventListener("click", function() {
+            markProjectAsComplete(project);
             if (project.completed == true) {
-                project.completed = false;
-                proj.setAttribute("completed", "false");
+                proj.setAttribute("completed", "true");
             }
             else if (project.completed == false) {
-                project.completed = true;
-                proj.setAttribute("completed", "true");
+                proj.setAttribute("completed", "false");
             }
             console.log(projects);
         })
@@ -329,13 +328,12 @@ function displayTaskList(proj, project) {
         completeTaskBtn.textContent = "Toggle";
         taskComplete.appendChild(completeTaskBtn);
         completeTaskBtn.addEventListener("click", function() {
+            markTaskAsComplete(task);
             if (task.completed == true) {
-                task.completed = false;
-                taskRow.setAttribute("completed", "false");
+                taskRow.setAttribute("completed", "true");
             }
             else if (task.completed == false) {
-                task.completed = true;
-                taskRow.setAttribute("completed", "true");
+                taskRow.setAttribute("completed", "false");
             }
             console.log(project.taskList);
         })

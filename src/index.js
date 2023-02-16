@@ -8,5 +8,7 @@ const project0 = new Project('Default Project', 'Your tasks will go here by defa
 
 projects.unshift(project0);
 
+console.log(projects);
+
 Ui();
 

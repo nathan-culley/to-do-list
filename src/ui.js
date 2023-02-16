@@ -142,6 +142,7 @@ function displayProjectList() {
         //give the project item a child div that has two child divs
         const expandProj = document.createElement("div");
         expandProj.className = "expand-proj";
+        expandProj.setAttribute("expanded", "true");
         proj.appendChild(expandProj);
         
         const projDetails = document.createElement("div");
@@ -161,6 +162,7 @@ function displayProjectList() {
 
 function displayProjectDetails(projDetails, project) {
     const details = document.createElement("ul");
+    details.textContent = "Project Details";
     projDetails.appendChild(details);
 
     //display description
@@ -196,6 +198,7 @@ function displayTaskList(proj, project) {
     if (project.taskList != undefined) {
 
         const tasks = document.createElement("ul");
+        tasks.textContent = "Task List";
         proj.appendChild(tasks);
     
         console.log(project.taskList);

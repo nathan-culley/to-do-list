@@ -2,3 +2,13 @@
   display: flex;
   flex-direction: column;
 }
+
+.expand-proj[expanded="true"] {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.expand-proj[expanded="false"] {
+  display: none;
+}
+

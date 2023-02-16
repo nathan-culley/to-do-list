@@ -215,8 +215,11 @@ function displayProjectList() {
 //function to display info about project
 
 function displayProjectDetails(projDetails, project) {
+    const detailsTitle = document.createElement("h4");
+    detailsTitle.textContent = "Project Details";
+    projDetails.appendChild(detailsTitle);
+    
     const details = document.createElement("ul");
-    details.textContent = "Project Details";
     projDetails.appendChild(details);
 
     //display description
@@ -249,6 +252,10 @@ function displayProjectDetails(projDetails, project) {
 
 function displayTaskList(proj, project) {
     
+    const taskListTitle = document.createElement("h4");
+    taskListTitle.textContent = "Tasks";
+    proj.appendChild(taskListTitle);
+
     //create a form to add a new task and add it to the expanded section
 
         const newTaskForm = document.createElement("form");
@@ -290,9 +297,7 @@ function displayTaskList(proj, project) {
     
     
     
-    const taskListTitle = document.createElement("h4");
-    taskListTitle.textContent = "Task List";
-    proj.appendChild(taskListTitle);
+    
     
     const taskTable = document.createElement("table");
     proj.appendChild(taskTable);

@@ -1,5 +1,6 @@
 import { add } from 'lodash';
 import { Project, createProject, projects, markProjectAsComplete } from './projects';
+import { Task, createTask, markTaskAsComplete } from './tasks';
 
 function Ui() {
     const content = document.createElement("div");
@@ -24,7 +25,7 @@ function createDisplay(content) {
     content.appendChild(title);
     createInput(content);
     displayProjectList(content);
-    displayTaskList(content);
+    //displayTaskList(content);
 }
 
 //function to create new-project form
@@ -145,6 +146,40 @@ function displayProjectList() {
         expandBtn.textContent = "Toggle details";
         proj.appendChild(expandBtn);
 
+        //add form to add new tasks
+        const newTaskForm = document.createElement("form");
+        proj.appendChild(newTaskForm);
+
+        const newTaskButton = document.createElement("button");
+        newTaskButton.textContent = "New Task";
+        newTaskButton.setAttribute("type", "submit");
+        newTaskForm.appendChild(newTaskButton);
+        newTaskButton.addEventListener("click", function() {
+            event.preventDefault();
+    
+            const formData = new FormData(newTaskForm);
+            const title = formData.get('add-title');
+            const dueDate = formData.get('add-due-date');
+    
+            createTask(project, title, '', dueDate, '', '');
+    
+            console.log(project.taskList);
+            
+            createDisplay(content);
+        })
+
+        const newTaskTitle = document.createElement("input");
+        newTaskTitle.setAttribute("type", "text");
+        newTaskTitle.setAttribute("name", "add-title");
+        newTaskForm.appendChild(newTaskTitle);
+
+        const newTaskDueDate = document.createElement("input");
+        newTaskDueDate.setAttribute("type", "text");
+        newTaskDueDate.setAttribute("name", "add-title");
+        newTaskForm.appendChild(newTaskDueDate);
+
+        
+
 
         //give the project item a child div that has two child divs for the project details and task list
         const expandProj = document.createElement("div");
@@ -175,6 +210,7 @@ function displayProjectList() {
             }
         });
 
+        
     }
 }
 
@@ -215,20 +251,17 @@ function displayProjectDetails(projDetails, project) {
 
 function displayTaskList(proj, project) {
 
-    if (project.taskList != undefined) {
+    const tasks = document.createElement("ul");
+    tasks.textContent = "Task List";
+    proj.appendChild(tasks);
 
-        const tasks = document.createElement("ul");
-        tasks.textContent = "Task List";
-        proj.appendChild(tasks);
-    
-        console.log(project.taskList);
         
-        for (let task of project.taskList) {
-            const todo = document.createElement("li");
-            todo.textContent = task.title;
-            tasks.appendChild(todo);
-        }
+    for (let task of project.taskList) {
+        const todo = document.createElement("li");
+        todo.textContent = task.title;
+        tasks.appendChild(todo);
     }
+
 }
 
 function removeAllChildNodes(parent) {

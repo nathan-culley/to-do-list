@@ -171,11 +171,13 @@ function displayProjectList() {
         const newTaskTitle = document.createElement("input");
         newTaskTitle.setAttribute("type", "text");
         newTaskTitle.setAttribute("name", "add-title");
+        newTaskTitle.setAttribute("value", "Task Title");
         newTaskForm.appendChild(newTaskTitle);
 
         const newTaskDueDate = document.createElement("input");
         newTaskDueDate.setAttribute("type", "text");
         newTaskDueDate.setAttribute("name", "add-title");
+        newTaskDueDate.setAttribute("value", "Task Due Date");
         newTaskForm.appendChild(newTaskDueDate);
 
         
@@ -258,7 +260,7 @@ function displayTaskList(proj, project) {
         
     for (let task of project.taskList) {
         const todo = document.createElement("li");
-        todo.textContent = task.title;
+        todo.textContent = task.title + " (" + task.dueDate + "}";
         tasks.appendChild(todo);
     }
 

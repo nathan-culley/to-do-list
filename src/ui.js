@@ -139,7 +139,14 @@ function displayProjectList() {
         proj.textContent = project.title;
         projectList.appendChild(proj);
 
-        //give the project item a child div that has two child divs
+        //create a button for toggling expansion of details (event listener comes later)
+        const expandBtn = document.createElement("button");
+        expandBtn.className = "expand-button";
+        expandBtn.textContent = "Toggle details";
+        proj.appendChild(expandBtn);
+
+
+        //give the project item a child div that has two child divs for the project details and task list
         const expandProj = document.createElement("div");
         expandProj.className = "expand-proj";
         expandProj.setAttribute("expanded", "true");
@@ -155,6 +162,19 @@ function displayProjectList() {
         
         displayProjectDetails(projDetails, project);
         displayTaskList(projTasks, project);
+
+        //add event listener to expandBtn that toggles the 'expanded' property of expandProj
+        expandBtn.addEventListener("click", () => {
+            if (expandProj.getAttribute("expanded") == "true") {
+                console.log("expanded");
+                expandProj.setAttribute("expanded", "false");
+            }
+            else if (expandProj.getAttribute("expanded") == "false") {
+                console.log("not expanded");
+                expandProj.setAttribute("expanded", "true");
+            }
+        });
+
     }
 }
 

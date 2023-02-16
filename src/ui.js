@@ -277,16 +277,70 @@ function displayProjectDetails(projDetails, project) {
 //function to display list of tasks under each project
 
 function displayTaskList(proj, project) {
+    const taskListTitle = document.createElement("h4");
+    taskListTitle.textContent = "Task List";
+    proj.appendChild(taskListTitle);
+    
+    const taskTable = document.createElement("table");
+    proj.appendChild(taskTable);
+    const taskHeader = document.createElement("tr");
+    taskTable.appendChild(taskHeader);
 
-    const tasks = document.createElement("ul");
-    tasks.textContent = "Task List";
-    proj.appendChild(tasks);
+    const titleHeader = document.createElement("th");
+    const dueDateHeader = document.createElement("th");
+    const completeHeader = document.createElement("th");
+
+    titleHeader.textContent = "Title";
+    dueDateHeader.textContent = "Due Date";
+    completeHeader.textContent = "Toggle Complete";
+
+    taskHeader.appendChild(titleHeader);
+    taskHeader.appendChild(dueDateHeader);
+    taskHeader.appendChild(completeHeader);
 
         
     for (let task of project.taskList) {
-        const todo = document.createElement("li");
-        todo.textContent = task.title + " (" + task.dueDate + "}";
-        tasks.appendChild(todo);
+        // const todo = document.createElement("li");
+        // todo.textContent = task.title + " (" + task.dueDate + "}";
+        // tasks.appendChild(todo);
+
+        const taskRow = document.createElement("tr");
+        taskRow.setAttribute("completed", "false");
+        taskTable.appendChild(taskRow);
+
+        const taskTitle = document.createElement("td");
+        taskTitle.textContent = task.title;
+        taskRow.appendChild(taskTitle);
+
+        const taskDueDate = document.createElement("td");
+        taskTitle.textContet = task.dueDate;
+        taskRow.appendChild(taskDueDate);
+
+        const taskComplete = document.createElement("td");
+        taskRow.appendChild(taskComplete);
+        
+        // const taskBtn = document.createElement("button");
+        // taskBtn.setAttribute("type", "submit");
+        // taskBtn.textContent = "Toggle";
+        // taskComplete.appendChild(taskBtn);
+
+        const taskBtn = document.createElement("button");
+        taskBtn.className = "task-button";
+        taskBtn.textContent = "Toggle";
+        taskComplete.appendChild(taskBtn);
+        taskBtn.addEventListener("click", function() {
+            if (task.completed == true) {
+                task.completed = false;
+                taskRow.setAttribute("completed", "true");
+            }
+            else if (task.completed == false) {
+                task.completed = true;
+                taskRow.setAttribute("completed", "false");
+            }
+            console.log(project.taskList);
+        })
+
+
     }
 
 }

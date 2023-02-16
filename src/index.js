@@ -40,11 +40,11 @@ createTask(projects[1], 'Task 1', 'My first task', '2023-03-03', 'High', 'Import
 
 console.log(projects);
 
-markTaskAsComplete(project0.taskList[0]);
+// markTaskAsComplete(project0.taskList[0]);
 
-markProjectAsComplete(projects[0]);
+// markProjectAsComplete(projects[0]);
 
-console.log(projects);
+// console.log(projects);
 
 Ui();
 

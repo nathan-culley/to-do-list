@@ -147,18 +147,18 @@ function displayProjectList() {
         proj.appendChild(expandBtn);
 
         //create a button to toggle the complete/incomplete status of the project
-        const completeBtn = document.createElement("button");
-        completeBtn.className = "complete-button";
-        completeBtn.textContent = "Toggle Complete";
-        proj.appendChild(completeBtn);
-        completeBtn.addEventListener("click", function() {
+        const completeProjBtn = document.createElement("button");
+        completeProjBtn.className = "complete-button";
+        completeProjBtn.textContent = "Toggle Complete";
+        proj.appendChild(completeProjBtn);
+        completeProjBtn.addEventListener("click", function() {
             if (project.completed == true) {
                 project.completed = false;
-                proj.setAttribute("completed", "true");
+                proj.setAttribute("completed", "false");
             }
             else if (project.completed == false) {
                 project.completed = true;
-                proj.setAttribute("completed", "false");
+                proj.setAttribute("completed", "true");
             }
             console.log(projects);
         })
@@ -319,23 +319,23 @@ function displayTaskList(proj, project) {
         const taskComplete = document.createElement("td");
         taskRow.appendChild(taskComplete);
         
-        // const taskBtn = document.createElement("button");
-        // taskBtn.setAttribute("type", "submit");
-        // taskBtn.textContent = "Toggle";
-        // taskComplete.appendChild(taskBtn);
+        // const completeTaskBtn = document.createElement("button");
+        // completeTaskBtn.setAttribute("type", "submit");
+        // completeTaskBtn.textContent = "Toggle";
+        // taskComplete.appendChild(completeTaskBtn);
 
-        const taskBtn = document.createElement("button");
-        taskBtn.className = "task-button";
-        taskBtn.textContent = "Toggle";
-        taskComplete.appendChild(taskBtn);
-        taskBtn.addEventListener("click", function() {
+        const completeTaskBtn = document.createElement("button");
+        completeTaskBtn.className = "task-button";
+        completeTaskBtn.textContent = "Toggle";
+        taskComplete.appendChild(completeTaskBtn);
+        completeTaskBtn.addEventListener("click", function() {
             if (task.completed == true) {
                 task.completed = false;
-                taskRow.setAttribute("completed", "true");
+                taskRow.setAttribute("completed", "false");
             }
             else if (task.completed == false) {
                 task.completed = true;
-                taskRow.setAttribute("completed", "false");
+                taskRow.setAttribute("completed", "true");
             }
             console.log(project.taskList);
         })

@@ -107,19 +107,19 @@ function createInput(content) {
     addProjectSection.appendChild(addProjectButton);
 
     addProjectButton.addEventListener("click", function() {
-        // event.preventDefault();
+        event.preventDefault();
 
-        // const formData = new FormData(addProjectSection);
-        // const title = formData.get('add-title');
-        // const description = formData.get('add-description');
-        // const dueDate = formData.get('add-due-date');
-        // const notes = formData.get('add-notes');
+        const formData = new FormData(addProjectSection);
+        const title = formData.get('add-title');
+        const description = formData.get('add-description');
+        const dueDate = formData.get('add-due-date');
+        const notes = formData.get('add-notes');
 
-        // createProject(title, description, dueDate, notes);
+        createProject(title, description, dueDate, notes);
 
-        // console.log(projects);
+        console.log(projects);
         
-        // createDisplay(content);
+        createDisplay(content);
     })
 }
 
@@ -137,8 +137,11 @@ function displayProjectList() {
         //create the item representing the project and add it to the project list
         const proj = document.createElement("div");
         proj.setAttribute("id", `project${projects.indexOf(project)}`);
-        proj.textContent = project.title;
         projectList.appendChild(proj);
+
+        const projTitle = document.createElement("h4");
+        projTitle.textContent = project.title;
+        proj.appendChild(projTitle);
 
         //create a button for toggling expansion of details (event listener comes later)
         const expandBtn = document.createElement("button");
@@ -154,10 +157,10 @@ function displayProjectList() {
         completeProjBtn.addEventListener("click", function() {
             markProjectAsComplete(project);
             if (project.completed == true) {
-                proj.setAttribute("completed", "true");
+                projTitle.setAttribute("completed", "true");
             }
             else if (project.completed == false) {
-                proj.setAttribute("completed", "false");
+                projTitle.setAttribute("completed", "false");
             }
             console.log(projects);
         })

@@ -313,7 +313,7 @@ function displayTaskList(proj, project) {
         taskRow.appendChild(taskTitle);
 
         const taskDueDate = document.createElement("td");
-        taskTitle.textContet = task.dueDate;
+        taskDueDate.textContent = task.dueDate;
         taskRow.appendChild(taskDueDate);
 
         const taskComplete = document.createElement("td");

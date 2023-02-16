@@ -4,11 +4,19 @@
 }
 
 .expand-proj[expanded="true"] {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
+  display: inline;
 }
 
 .expand-proj[expanded="false"] {
   display: none;
 }
 
+[completed="true"] {
+  text-decoration: line-through;
+  color: gray;
+}
+
+.expand-sections {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}

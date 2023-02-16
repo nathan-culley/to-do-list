@@ -143,17 +143,58 @@ function displayProjectList() {
         //create a button for toggling expansion of details (event listener comes later)
         const expandBtn = document.createElement("button");
         expandBtn.className = "expand-button";
-        expandBtn.textContent = "Toggle details";
+        expandBtn.textContent = "Toggle Details";
         proj.appendChild(expandBtn);
 
-        //add form to add new tasks
-        const newTaskForm = document.createElement("form");
-        proj.appendChild(newTaskForm);
+        //create a button to toggle the complete/incomplete status of the project
+        const completeBtn = document.createElement("button");
+        completeBtn.className = "complete-button";
+        completeBtn.textContent = "Toggle Complete";
+        proj.appendChild(completeBtn);
+        completeBtn.addEventListener("click", function() {
+            if (project.completed == true) {
+                project.completed = false;
+                proj.setAttribute("completed", "true");
+            }
+            else if (project.completed == false) {
+                project.completed = true;
+                proj.setAttribute("completed", "false");
+            }
+            console.log(projects);
+        })
 
+        
+
+        
+
+
+        //give the project item a child div to contain expanded info and inputs
+        const expandProj = document.createElement("div");
+        expandProj.className = "expand-proj";
+        expandProj.setAttribute("expanded", "true");
+        proj.appendChild(expandProj);
+
+        const newTaskForm = document.createElement("form");
+        expandProj.appendChild(newTaskForm);
+
+        //create a button to add a new task and add it to the expanded section
         const newTaskButton = document.createElement("button");
         newTaskButton.textContent = "New Task";
         newTaskButton.setAttribute("type", "submit");
         newTaskForm.appendChild(newTaskButton);
+
+        const newTaskTitle = document.createElement("input");
+        newTaskTitle.setAttribute("type", "text");
+        newTaskTitle.setAttribute("name", "add-title");
+        newTaskTitle.setAttribute("value", "Task Title");
+        newTaskForm.appendChild(newTaskTitle);
+
+        const newTaskDueDate = document.createElement("input");
+        newTaskDueDate.setAttribute("type", "text");
+        newTaskDueDate.setAttribute("name", "add-due-date");
+        newTaskDueDate.setAttribute("value", "Task Due Date");
+        newTaskForm.appendChild(newTaskDueDate);
+        
         newTaskButton.addEventListener("click", function() {
             event.preventDefault();
     
@@ -168,34 +209,18 @@ function displayProjectList() {
             createDisplay(content);
         })
 
-        const newTaskTitle = document.createElement("input");
-        newTaskTitle.setAttribute("type", "text");
-        newTaskTitle.setAttribute("name", "add-title");
-        newTaskTitle.setAttribute("value", "Task Title");
-        newTaskForm.appendChild(newTaskTitle);
-
-        const newTaskDueDate = document.createElement("input");
-        newTaskDueDate.setAttribute("type", "text");
-        newTaskDueDate.setAttribute("name", "add-title");
-        newTaskDueDate.setAttribute("value", "Task Due Date");
-        newTaskForm.appendChild(newTaskDueDate);
-
-        
-
-
-        //give the project item a child div that has two child divs for the project details and task list
-        const expandProj = document.createElement("div");
-        expandProj.className = "expand-proj";
-        expandProj.setAttribute("expanded", "true");
-        proj.appendChild(expandProj);
+        //create section to contain the project details and task list
+        const expandSections = document.createElement("div");
+        expandSections.className = "expand-sections";
+        expandProj.appendChild(expandSections);
         
         const projDetails = document.createElement("div");
         projDetails.className = "proj-details";
         const projTasks = document.createElement("div");
         projTasks.className = "proj-tasks";
 
-        expandProj.appendChild(projDetails);
-        expandProj.appendChild(projTasks);
+        expandSections.appendChild(projDetails);
+        expandSections.appendChild(projTasks);
         
         displayProjectDetails(projDetails, project);
         displayTaskList(projTasks, project);

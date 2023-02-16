@@ -176,40 +176,9 @@ function displayProjectList() {
         expandProj.setAttribute("expanded", "true");
         proj.appendChild(expandProj);
 
-        const newTaskForm = document.createElement("form");
-        expandProj.appendChild(newTaskForm);
-
-        //create a button to add a new task and add it to the expanded section
-        const newTaskButton = document.createElement("button");
-        newTaskButton.textContent = "New Task";
-        newTaskButton.setAttribute("type", "submit");
-        newTaskForm.appendChild(newTaskButton);
-
-        const newTaskTitle = document.createElement("input");
-        newTaskTitle.setAttribute("type", "text");
-        newTaskTitle.setAttribute("name", "add-title");
-        newTaskTitle.setAttribute("value", "Task Title");
-        newTaskForm.appendChild(newTaskTitle);
-
-        const newTaskDueDate = document.createElement("input");
-        newTaskDueDate.setAttribute("type", "text");
-        newTaskDueDate.setAttribute("name", "add-due-date");
-        newTaskDueDate.setAttribute("value", "Task Due Date");
-        newTaskForm.appendChild(newTaskDueDate);
         
-        newTaskButton.addEventListener("click", function() {
-            event.preventDefault();
-    
-            const formData = new FormData(newTaskForm);
-            const title = formData.get('add-title');
-            const dueDate = formData.get('add-due-date');
-    
-            createTask(project, title, '', dueDate, '', '');
-    
-            console.log(project.taskList);
-            
-            createDisplay(content);
-        })
+
+        
 
         //create section to contain the project details and task list
         const expandSections = document.createElement("div");
@@ -279,6 +248,48 @@ function displayProjectDetails(projDetails, project) {
 //function to display list of tasks under each project
 
 function displayTaskList(proj, project) {
+    
+    //create a form to add a new task and add it to the expanded section
+
+        const newTaskForm = document.createElement("form");
+        proj.appendChild(newTaskForm);
+        
+        const newTaskButton = document.createElement("button");
+        newTaskButton.textContent = "New Task";
+        newTaskButton.setAttribute("type", "submit");
+        newTaskForm.appendChild(newTaskButton);
+
+        const newTaskTitle = document.createElement("input");
+        newTaskTitle.setAttribute("type", "text");
+        newTaskTitle.setAttribute("name", "add-title");
+        newTaskTitle.setAttribute("value", "Task Title");
+        newTaskForm.appendChild(newTaskTitle);
+
+        const newTaskDueDate = document.createElement("input");
+        newTaskDueDate.setAttribute("type", "text");
+        newTaskDueDate.setAttribute("name", "add-due-date");
+        newTaskDueDate.setAttribute("value", "Task Due Date");
+        newTaskForm.appendChild(newTaskDueDate);
+        
+        newTaskButton.addEventListener("click", function() {
+            event.preventDefault();
+    
+            const formData = new FormData(newTaskForm);
+            const title = formData.get('add-title');
+            const dueDate = formData.get('add-due-date');
+    
+            createTask(project, title, '', dueDate, '', '');
+    
+            console.log(project.taskList);
+            
+            createDisplay(content);
+        })
+    
+    
+    
+    
+    
+    
     const taskListTitle = document.createElement("h4");
     taskListTitle.textContent = "Task List";
     proj.appendChild(taskListTitle);

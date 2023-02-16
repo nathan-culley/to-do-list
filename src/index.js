@@ -13,8 +13,6 @@ console.log(projects);
 Ui();
 
 
-
-//make Toggle Complete for projects only mark the project title as complete, so only it is struck through. Right now the project title is not its own element, just text content directly inside the <div>.
 //add ability to expand task details
 //add ability to edit project details
 //add ability to edit task details

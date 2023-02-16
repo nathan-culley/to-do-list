@@ -11,6 +11,19 @@
   display: none;
 }
 
+table {
+  width: 100%;
+}
+
+.expand-task[expanded="true"] {
+  display: table-row;
+  width: 100%;
+}
+
+.expand-task[expanded="false"] {
+  display: none;
+}
+
 [completed="true"] {
   text-decoration: line-through;
   color: gray;
@@ -27,4 +40,5 @@ th {
 
 td {
   border: solid 1px black;
+  display: table-cell;
 }

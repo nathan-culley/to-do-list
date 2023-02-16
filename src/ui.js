@@ -285,7 +285,7 @@ function displayTaskList(proj, project) {
     
     const taskTable = document.createElement("table");
     proj.appendChild(taskTable);
-    const taskHeader = document.createElement("tr");
+    const taskHeader = document.createElement("thead");
     taskTable.appendChild(taskHeader);
 
     const titleHeader = document.createElement("th");
@@ -294,7 +294,7 @@ function displayTaskList(proj, project) {
 
     titleHeader.textContent = "Title";
     dueDateHeader.textContent = "Due Date";
-    completeHeader.textContent = "Toggle Complete";
+    completeHeader.textContent = "Actions";
 
     taskHeader.appendChild(titleHeader);
     taskHeader.appendChild(dueDateHeader);
@@ -310,6 +310,28 @@ function displayTaskList(proj, project) {
         taskRow.setAttribute("completed", "false");
         taskTable.appendChild(taskRow);
 
+        const expandTaskRow = document.createElement("tr");
+        expandTaskRow.setAttribute("expanded", "false");
+        expandTaskRow.className = "expand-task";
+        taskTable.appendChild(expandTaskRow);
+
+        const taskDetails = document.createElement("td");
+        // taskDetails.textContent = "hello";
+        expandTaskRow.appendChild(taskDetails);
+        taskDetails.setAttribute("colspan", "3");
+
+        const taskDescription = document.createElement("ul");
+        const taskPriority = document.createElement("ul");
+        const taskNotes = document.createElement("ul");
+
+        taskDescription.textContent = "Description: " + task.description;
+        taskPriority.textContent = "Priority: " + task.priority;
+        taskNotes.textContent = "Notes: " + task.notes;
+
+        taskDetails.appendChild(taskDescription);
+        taskDetails.appendChild(taskPriority);
+        taskDetails.appendChild(taskNotes);
+
         const taskTitle = document.createElement("td");
         taskTitle.textContent = task.title;
         taskRow.appendChild(taskTitle);
@@ -318,18 +340,31 @@ function displayTaskList(proj, project) {
         taskDueDate.textContent = task.dueDate;
         taskRow.appendChild(taskDueDate);
 
-        const taskComplete = document.createElement("td");
-        taskRow.appendChild(taskComplete);
-        
-        // const completeTaskBtn = document.createElement("button");
-        // completeTaskBtn.setAttribute("type", "submit");
-        // completeTaskBtn.textContent = "Toggle";
-        // taskComplete.appendChild(completeTaskBtn);
+        const taskActions = document.createElement("td");
+        taskRow.appendChild(taskActions);
+    
+
+        const expandTaskBtn = document.createElement("button");
+        expandTaskBtn.className = "expand-button";
+        expandTaskBtn.textContent = "Expand";
+        taskActions.appendChild(expandTaskBtn);
+
+        expandTaskBtn.addEventListener("click", () => {
+            if (expandTaskRow.getAttribute("expanded") == "true") {
+                console.log("expanded");
+                expandTaskRow.setAttribute("expanded", "false");
+            }
+            else if (expandTaskRow.getAttribute("expanded") == "false") {
+                console.log("not expanded");
+                expandTaskRow.setAttribute("expanded", "true");
+            }
+        });
+
 
         const completeTaskBtn = document.createElement("button");
         completeTaskBtn.className = "task-button";
-        completeTaskBtn.textContent = "Toggle";
-        taskComplete.appendChild(completeTaskBtn);
+        completeTaskBtn.textContent = "Complete";
+        taskActions.appendChild(completeTaskBtn);
         completeTaskBtn.addEventListener("click", function() {
             markTaskAsComplete(task);
             if (task.completed == true) {
@@ -339,7 +374,10 @@ function displayTaskList(proj, project) {
                 taskRow.setAttribute("completed", "false");
             }
             console.log(project.taskList);
-        })
+        });
+
+        
+
 
 
     }

@@ -464,7 +464,16 @@ function displayTaskList(proj, project) {
             console.log(project.taskList);
         });
 
-        
+        //create a button to delete the task
+        const deleteTaskBtn = document.createElement("button");
+        deleteTaskBtn.className = "delete-button";
+        deleteTaskBtn.textContent = "Delete";
+        taskActions.appendChild(deleteTaskBtn);
+        deleteTaskBtn.addEventListener("click", function() {
+            project.taskList.shift(task);
+            console.log("delete");
+            createDisplay(content);
+        })
 
 
 

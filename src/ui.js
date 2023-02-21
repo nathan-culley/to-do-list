@@ -50,6 +50,8 @@ function createInput(content) {
     addTitle.setAttribute("type", "text");
     addTitle.setAttribute("id", "add-title");
     addTitle.setAttribute("name", "add-title");
+    addTitle.setAttribute("minlength", "0");
+    addTitle.setAttribute("maxlength", "20");
     addTitle.setAttribute("required","");
     titleInputLabel.appendChild(addTitle);
 
@@ -67,6 +69,8 @@ function createInput(content) {
     addDescription.setAttribute("type", "text");
     addDescription.setAttribute("id", "add-description");
     addDescription.setAttribute("name", "add-description");
+    addDescription.setAttribute("minlength", "0");
+    addDescription.setAttribute("maxlength", "50");
     descriptionInputLabel.appendChild(addDescription);
 
     //add due date
@@ -99,6 +103,8 @@ function createInput(content) {
     addNotes.setAttribute("type", "text");
     addNotes.setAttribute("id", "add-notes");
     addNotes.setAttribute("name", "add-notes");
+    addNotes.setAttribute("minlength", "0");
+    addNotes.setAttribute("maxlength", "100");
     notesInputLabel.appendChild(addNotes);
 
     //add submit button
@@ -107,8 +113,8 @@ function createInput(content) {
     addProjectButton.setAttribute("type", "submit");
     addProjectSection.appendChild(addProjectButton);
 
-    addProjectButton.onsubmit = function() {
-        addProjectButton.event.preventDefault();
+    addProjectButton.addEventListener("click", function() {
+        event.preventDefault();
 
         const formData = new FormData(addProjectSection);
         const title = formData.get('add-title');
@@ -121,7 +127,7 @@ function createInput(content) {
         console.log(projects);
         
         createDisplay(content);
-    }
+    });
 }
 
 //function to display list of projects
@@ -284,23 +290,52 @@ function displayTaskList(proj, project) {
         newTaskTitle.setAttribute("type", "text");
         newTaskTitle.setAttribute("name", "add-title");
         newTaskTitle.setAttribute("value", "Task Title");
+        newTaskTitle.setAttribute("minlength", "0");
+        newTaskTitle.setAttribute("maxlength", "20");
         newTaskTitle.required = true;
         newTaskForm.appendChild(newTaskTitle);
+
+        const newTaskDescription = document.createElement("input");
+        newTaskDescription.setAttribute("type", "text");
+        newTaskDescription.setAttribute("name", "add-description");
+        newTaskDescription.setAttribute("value", "Task Description");
+        newTaskTitle.setAttribute("minlength", "0");
+        newTaskTitle.setAttribute("maxlength", "50");
+        newTaskForm.appendChild(newTaskDescription);
 
         const newTaskDueDate = document.createElement("input");
         newTaskDueDate.setAttribute("type", "date");
         newTaskDueDate.setAttribute("name", "add-due-date");
         newTaskDueDate.setAttribute("value", "Task Due Date");
         newTaskForm.appendChild(newTaskDueDate);
+
+        const newTaskPriority = document.createElement("input");
+        newTaskPriority.setAttribute("type", "number");
+        newTaskPriority.setAttribute("name", "add-priority");
+        newTaskPriority.setAttribute("value", "Task Priority");
+        newTaskPriority.setAttribute("min", "1");
+        newTaskPriority.setAttribute("max", "5");
+        newTaskForm.appendChild(newTaskPriority);
+
+        const newTaskNotes = document.createElement("input");
+        newTaskNotes.setAttribute("type", "text");
+        newTaskNotes.setAttribute("name", "add-notes");
+        newTaskNotes.setAttribute("value", "Task Notes");
+        newTaskNotes.setAttribute("minlength", "0");
+        newTaskNotes.setAttribute("maxlength", "50");
+        newTaskForm.appendChild(newTaskNotes);
         
-        newTaskButton.addEventListener("submit", function() {
+        newTaskButton.addEventListener("click", function() {
             event.preventDefault();
     
             const formData = new FormData(newTaskForm);
             const title = formData.get('add-title');
+            const description = formData.get('add-description');
             const dueDate = formData.get('add-due-date');
+            const priority = formData.get('add-priority');
+            const notes = formData.get('add-notes');
     
-            createTask(project, title, '', dueDate, '', '');
+            createTask(project, title, description, dueDate, priority, notes);
     
             console.log(project.taskList);
             
@@ -451,6 +486,8 @@ function makeProjectModal(proj, project) {
     addTitle.setAttribute("type", "text");
     addTitle.setAttribute("id", "add-title");
     addTitle.setAttribute("name", "add-title");
+    addTitle.setAttribute("minlength", "0");
+    addTitle.setAttribute("maxlength", "20");
     titleInputLabel.appendChild(addTitle);
 
     //add description
@@ -467,6 +504,8 @@ function makeProjectModal(proj, project) {
     addDescription.setAttribute("type", "text");
     addDescription.setAttribute("id", "add-description");
     addDescription.setAttribute("name", "add-description");
+    addDescription.setAttribute("minlength", "0");
+    addDescription.setAttribute("maxlength", "50");
     descriptionInputLabel.appendChild(addDescription);
 
     //add due date
@@ -499,6 +538,8 @@ function makeProjectModal(proj, project) {
     addNotes.setAttribute("type", "text");
     addNotes.setAttribute("id", "add-notes");
     addNotes.setAttribute("name", "add-notes");
+    addNotes.setAttribute("minlength", "0");
+    addNotes.setAttribute("maxlength", "100");
     notesInputLabel.appendChild(addNotes);
 
     //add submit button
@@ -557,23 +598,56 @@ function makeTaskModal(taskRow, task) {
         newTaskTitle.setAttribute("type", "text");
         newTaskTitle.setAttribute("name", "add-title");
         newTaskTitle.setAttribute("value", "Task Title");
+        newTaskTitle.setAttribute("minlength", "0");
+        newTaskTitle.setAttribute("maxlength", "20");
+        newTaskTitle.required = true;
         newTaskForm.appendChild(newTaskTitle);
+
+        const newTaskDescription = document.createElement("input");
+        newTaskDescription.setAttribute("type", "text");
+        newTaskDescription.setAttribute("name", "add-description");
+        newTaskDescription.setAttribute("value", "Task Description");
+        newTaskTitle.setAttribute("minlength", "0");
+        newTaskTitle.setAttribute("maxlength", "50");
+        newTaskForm.appendChild(newTaskDescription);
 
         const newTaskDueDate = document.createElement("input");
         newTaskDueDate.setAttribute("type", "date");
         newTaskDueDate.setAttribute("name", "add-due-date");
         newTaskDueDate.setAttribute("value", "Task Due Date");
         newTaskForm.appendChild(newTaskDueDate);
+
+        const newTaskPriority = document.createElement("input");
+        newTaskPriority.setAttribute("type", "number");
+        newTaskPriority.setAttribute("name", "add-priority");
+        newTaskPriority.setAttribute("value", "Task Priority");
+        newTaskPriority.setAttribute("min", "1");
+        newTaskPriority.setAttribute("max", "5");
+        newTaskForm.appendChild(newTaskPriority);
+
+        const newTaskNotes = document.createElement("input");
+        newTaskNotes.setAttribute("type", "text");
+        newTaskNotes.setAttribute("name", "add-notes");
+        newTaskNotes.setAttribute("value", "Task Notes");
+        newTaskNotes.setAttribute("minlength", "0");
+        newTaskNotes.setAttribute("maxlength", "50");
+        newTaskForm.appendChild(newTaskNotes);
         
         newTaskButton.addEventListener("click", function() {
             event.preventDefault();
     
             const formData = new FormData(newTaskForm);
             const title = formData.get('add-title');
+            const description = formData.get('add-description');
             const dueDate = formData.get('add-due-date');
+            const priority = formData.get('add-priority');
+            const notes = formData.get('add-notes');
     
             task.title = title;
+            task.description = description;
             task.dueDate = dueDate;
+            task.priority = priority;
+            task.notes = notes;
     
             
             createDisplay(content);

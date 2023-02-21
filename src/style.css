@@ -1,3 +1,22 @@
+:root {
+  /* color variables */
+  --main-color: indigo;
+  --accent-color-1: violet;
+  --accent-color-2: purple;
+  --accent-color-3: darkmagenta;
+  --accent-color-4: darkblue;
+  --accent-color-5: white;
+  --accent-color-6: black;
+
+
+}
+
+#content {
+  border: solid 1px var(--main-color);
+  border-radius: 10px;
+  padding: 10px;
+}
+
 .input-label {
   display: flex;
   flex-direction: column;

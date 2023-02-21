@@ -13,8 +13,6 @@ console.log(projects);
 Ui();
 
 
-//add ability to edit project details
-//add ability to edit task details
 //add form validation
 //allow user to add more info to tasks
 //rework system for adding unique identifiers for each project and task (find out if this really matters--you may be able to just delete projects and tasks and not worry about it if there are no references to the identifiers you're using)
@@ -22,4 +20,5 @@ Ui();
 //add ability to filter by complete and incomplete status
 //update display of project details after toggling completion ("completed" does not update to yes).
 //incorporate local storage
+//move object-editing portions of edit modals to the projects.js and tasks.js files
 //make it pretty

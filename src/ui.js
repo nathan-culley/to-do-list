@@ -389,7 +389,20 @@ function displayTaskList(proj, project) {
             }
         });
 
+        //create an edit button and modal for the task
 
+        const editTaskBtn = document.createElement("button");
+        editTaskBtn.className = "edit-button";
+        editTaskBtn.textContent = "Edit";
+        taskActions.appendChild(editTaskBtn);
+
+        const taskModal = makeTaskModal(taskRow, task);
+
+        editTaskBtn.addEventListener("click", function() {
+            taskModal.showModal();
+        })
+
+        //create a button to mark the task complete
         const completeTaskBtn = document.createElement("button");
         completeTaskBtn.className = "task-button";
         completeTaskBtn.textContent = "Complete";
@@ -520,15 +533,54 @@ function makeProjectModal(proj, project) {
     })
 
 
-
-
-
-
-
-
     proj.appendChild(projectModal);
 
     return projectModal;
+}
+
+
+function makeTaskModal(taskRow, task) {
+    const taskModal = document.createElement("dialog");
+    taskModal.className = "project-modal";
+    
+    const newTaskForm = document.createElement("form");
+        taskModal.appendChild(newTaskForm);
+        
+        const newTaskButton = document.createElement("button");
+        newTaskButton.textContent = "Edit Task";
+        newTaskButton.setAttribute("type", "submit");
+        newTaskForm.appendChild(newTaskButton);
+
+        const newTaskTitle = document.createElement("input");
+        newTaskTitle.setAttribute("type", "text");
+        newTaskTitle.setAttribute("name", "add-title");
+        newTaskTitle.setAttribute("value", "Task Title");
+        newTaskForm.appendChild(newTaskTitle);
+
+        const newTaskDueDate = document.createElement("input");
+        newTaskDueDate.setAttribute("type", "text");
+        newTaskDueDate.setAttribute("name", "add-due-date");
+        newTaskDueDate.setAttribute("value", "Task Due Date");
+        newTaskForm.appendChild(newTaskDueDate);
+        
+        newTaskButton.addEventListener("click", function() {
+            event.preventDefault();
+    
+            const formData = new FormData(newTaskForm);
+            const title = formData.get('add-title');
+            const dueDate = formData.get('add-due-date');
+    
+            task.title = title;
+            task.dueDate = dueDate;
+    
+            
+            createDisplay(content);
+        })
+
+
+    taskRow.appendChild(taskModal);
+
+    return taskModal;
 }
 
 function removeAllChildNodes(parent) {

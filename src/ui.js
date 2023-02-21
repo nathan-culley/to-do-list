@@ -185,7 +185,16 @@ function displayProjectList() {
             console.log(projects);
         })
 
-        
+        //create a button to delete the project
+        const deleteProjBtn = document.createElement("button");
+        deleteProjBtn.className = "delete-button";
+        deleteProjBtn.textContent = "Delete";
+        proj.appendChild(deleteProjBtn);
+        deleteProjBtn.addEventListener("click", function() {
+            projects.shift(project);
+            console.log("delete");
+            createDisplay(content);
+        })
 
         
 

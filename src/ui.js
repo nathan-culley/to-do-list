@@ -50,6 +50,7 @@ function createInput(content) {
     addTitle.setAttribute("type", "text");
     addTitle.setAttribute("id", "add-title");
     addTitle.setAttribute("name", "add-title");
+    addTitle.setAttribute("required","");
     titleInputLabel.appendChild(addTitle);
 
     //add description
@@ -79,7 +80,7 @@ function createInput(content) {
     dueDateInputLabel.appendChild(addDueDateLabel);
 
     const addDueDate = document.createElement("input");
-    addDueDate.setAttribute("type", "text");
+    addDueDate.setAttribute("type", "date");
     addDueDate.setAttribute("id", "add-due-date");
     addDueDate.setAttribute("name", "add-due-date");
     dueDateInputLabel.appendChild(addDueDate);
@@ -106,8 +107,8 @@ function createInput(content) {
     addProjectButton.setAttribute("type", "submit");
     addProjectSection.appendChild(addProjectButton);
 
-    addProjectButton.addEventListener("click", function() {
-        event.preventDefault();
+    addProjectButton.onsubmit = function() {
+        addProjectButton.event.preventDefault();
 
         const formData = new FormData(addProjectSection);
         const title = formData.get('add-title');
@@ -120,7 +121,7 @@ function createInput(content) {
         console.log(projects);
         
         createDisplay(content);
-    })
+    }
 }
 
 //function to display list of projects
@@ -283,15 +284,16 @@ function displayTaskList(proj, project) {
         newTaskTitle.setAttribute("type", "text");
         newTaskTitle.setAttribute("name", "add-title");
         newTaskTitle.setAttribute("value", "Task Title");
+        newTaskTitle.required = true;
         newTaskForm.appendChild(newTaskTitle);
 
         const newTaskDueDate = document.createElement("input");
-        newTaskDueDate.setAttribute("type", "text");
+        newTaskDueDate.setAttribute("type", "date");
         newTaskDueDate.setAttribute("name", "add-due-date");
         newTaskDueDate.setAttribute("value", "Task Due Date");
         newTaskForm.appendChild(newTaskDueDate);
         
-        newTaskButton.addEventListener("click", function() {
+        newTaskButton.addEventListener("submit", function() {
             event.preventDefault();
     
             const formData = new FormData(newTaskForm);
@@ -478,7 +480,7 @@ function makeProjectModal(proj, project) {
     dueDateInputLabel.appendChild(addDueDateLabel);
 
     const addDueDate = document.createElement("input");
-    addDueDate.setAttribute("type", "text");
+    addDueDate.setAttribute("type", "date");
     addDueDate.setAttribute("id", "add-due-date");
     addDueDate.setAttribute("name", "add-due-date");
     dueDateInputLabel.appendChild(addDueDate);
@@ -558,7 +560,7 @@ function makeTaskModal(taskRow, task) {
         newTaskForm.appendChild(newTaskTitle);
 
         const newTaskDueDate = document.createElement("input");
-        newTaskDueDate.setAttribute("type", "text");
+        newTaskDueDate.setAttribute("type", "date");
         newTaskDueDate.setAttribute("name", "add-due-date");
         newTaskDueDate.setAttribute("value", "Task Due Date");
         newTaskForm.appendChild(newTaskDueDate);

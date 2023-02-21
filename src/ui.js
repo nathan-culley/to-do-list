@@ -143,6 +143,19 @@ function displayProjectList() {
         projTitle.textContent = project.title;
         proj.appendChild(projTitle);
 
+        //create an edit button and modal for the project
+        const editProjBtn = document.createElement("button");
+        editProjBtn.className = "edit-button";
+        editProjBtn.textContent = "Edit";
+        proj.appendChild(editProjBtn);
+
+        const projectModal = makeProjectModal(proj, project);
+
+        editProjBtn.addEventListener("click", function() {
+            projectModal.showModal();
+        })
+
+
         //create a button for toggling expansion of details (event listener comes later)
         const expandBtn = document.createElement("button");
         expandBtn.className = "expand-button";
@@ -398,6 +411,124 @@ function displayTaskList(proj, project) {
 
     }
 
+}
+
+function makeProjectModal(proj, project) {
+    const projectModal = document.createElement("dialog");
+    projectModal.className = "project-modal";
+    
+    const addProjectSection = document.createElement("form");
+    addProjectSection.setAttribute("id", "add-project");
+    projectModal.appendChild(addProjectSection);
+    addProjectSection.innerHTML = "<h3>Add New Project</h3>"
+
+    //add title
+    const titleInputLabel = document.createElement("div");
+    titleInputLabel.className = "input-label";
+    addProjectSection.appendChild(titleInputLabel);
+
+    const addTitleLabel = document.createElement("label");
+    addTitleLabel.setAttribute("for", "add-title");
+    addTitleLabel.textContent = "Project Title";
+    titleInputLabel.appendChild(addTitleLabel);
+    
+    const addTitle = document.createElement("input");
+    addTitle.setAttribute("type", "text");
+    addTitle.setAttribute("id", "add-title");
+    addTitle.setAttribute("name", "add-title");
+    titleInputLabel.appendChild(addTitle);
+
+    //add description
+    const descriptionInputLabel = document.createElement("div");
+    descriptionInputLabel.className = "input-label";
+    addProjectSection.appendChild(descriptionInputLabel);
+
+    const addDescriptionLabel = document.createElement("label");
+    addDescriptionLabel.setAttribute("for", "add-description");
+    addDescriptionLabel.textContent = "Project Description";
+    descriptionInputLabel.appendChild(addDescriptionLabel);
+
+    const addDescription = document.createElement("input");
+    addDescription.setAttribute("type", "text");
+    addDescription.setAttribute("id", "add-description");
+    addDescription.setAttribute("name", "add-description");
+    descriptionInputLabel.appendChild(addDescription);
+
+    //add due date
+    const dueDateInputLabel = document.createElement("div");
+    dueDateInputLabel.className = "input-label";
+    addProjectSection.appendChild(dueDateInputLabel);
+
+    const addDueDateLabel = document.createElement("label");
+    addDueDateLabel.setAttribute("for", "add-due-date");
+    addDueDateLabel.textContent = "Project Due Date";
+    dueDateInputLabel.appendChild(addDueDateLabel);
+
+    const addDueDate = document.createElement("input");
+    addDueDate.setAttribute("type", "text");
+    addDueDate.setAttribute("id", "add-due-date");
+    addDueDate.setAttribute("name", "add-due-date");
+    dueDateInputLabel.appendChild(addDueDate);
+
+    //add notes
+    const notesInputLabel = document.createElement("div");
+    notesInputLabel.className = "input-label";
+    addProjectSection.appendChild(notesInputLabel);
+
+    const addNotesLabel = document.createElement("label");
+    addNotesLabel.setAttribute("for", "add-notes");
+    addNotesLabel.textContent = "Project Notes";
+    notesInputLabel.appendChild(addNotesLabel);
+
+    const addNotes = document.createElement("input");
+    addNotes.setAttribute("type", "text");
+    addNotes.setAttribute("id", "add-notes");
+    addNotes.setAttribute("name", "add-notes");
+    notesInputLabel.appendChild(addNotes);
+
+    //add submit button
+    const addProjectButton = document.createElement("button");
+    addProjectButton.textContent = "Edit Project";
+    addProjectButton.setAttribute("type", "submit");
+    addProjectSection.appendChild(addProjectButton);
+
+    const closeModalBtn = document.createElement("button");
+    closeModalBtn.textContent = "Cancel";
+    closeModalBtn.setAttribute("type", "submit");
+    addProjectSection.appendChild(closeModalBtn);
+    closeModalBtn.addEventListener("click", function() {
+        projectModal.close();
+    })
+
+    addProjectButton.addEventListener("click", function() {
+        event.preventDefault();
+
+        const formData = new FormData(addProjectSection);
+        const title = formData.get('add-title');
+        const description = formData.get('add-description');
+        const dueDate = formData.get('add-due-date');
+        const notes = formData.get('add-notes');
+
+        project.title = title;
+        project.description = description;
+        project.dueDate = dueDate;
+        project.notes = notes;
+
+        console.log(projects);
+        
+        createDisplay(content);
+    })
+
+
+
+
+
+
+
+
+    proj.appendChild(projectModal);
+
+    return projectModal;
 }
 
 function removeAllChildNodes(parent) {

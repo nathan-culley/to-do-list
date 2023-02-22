@@ -171,6 +171,7 @@ function displayProjectList(projectList, projects) {
         //create the item representing the project and add it to the project list
         const proj = document.createElement("div");
         proj.setAttribute("id", `project${projects.indexOf(project)}`);
+        proj.className = "project-area";
         projectList.appendChild(proj);
 
         const projTitle = document.createElement("h4");
@@ -341,6 +342,7 @@ function displayTaskList(proj, project) {
 //FUNCTION FOR GENERATING AND DISPLAYING A FORM TO CREATE A NEW TASK
 function displayNewTaskForm(proj, project) {
     const newTaskForm = document.createElement("form");
+    newTaskForm.className = "new-task";
     proj.appendChild(newTaskForm);
     
     const newTaskButton = document.createElement("button");

@@ -83,11 +83,36 @@ body {
   border: solid 2px hsl(var(--sec-HSL-neutral));
   border-radius: 5px;
   padding: 5px;
+  margin: 10px;
 }
 
 .input-label {
   display: flex;
   flex-direction: column;
+}
+
+input {
+  background-color: hsl(var(--prim-HSL-palelight));
+  border: solid 1px hsl(var(--prim-HSL-dark));
+  border-radius: 3px;
+  margin: 5px;
+}
+
+button {
+  background-color: hsl(var(--sec-HSL-light));
+  border: 1px solid transparent;
+  border-radius: 3px;
+  box-shadow: 1px 1px 2px 1px hsl(var(--sec-HSL-neutral));
+  margin: 5px;
+}
+
+.project-area {
+  border: solid 2px hsl(var(--sec-HSL-neutral));
+  border-radius: 5px;
+  padding: 5px;
+  margin: 10px;
+  background-color: hsl(var(--prim-HSL-palelight));
+  color: hsl(var(--prim-HSL-richdark));
 }
 
 .expand-proj[expanded="true"] {
@@ -103,6 +128,20 @@ body {
     display: flexbox;
     flex-direction: column;
   }
+}
+
+dialog {
+  background-color: hsl(var(--sec-HSL-offwhite));
+  border: 2px solid hsl(var(--sec-HSL-neutral));
+  border-radius: 3px;
+}
+
+.new-task > input {
+  background-color: hsl(var(--sec-HSL-palelight));
+  border: solid 1px hsl(var(--sec-HSL-dark));
+  border-radius: 3px;
+  margin: 5px;
+  color: hsl(var(--prim-HSL-offblack));
 }
 
 table {

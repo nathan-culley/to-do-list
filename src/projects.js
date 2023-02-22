@@ -1,4 +1,5 @@
 // import { Ui } from './ui';
+import { setStorage } from './local';
 
 const projects = [];
 
@@ -21,6 +22,7 @@ function createProject(title, description, dueDate, notes, completed) {
     const projectName = `project${projects.length}`;
     window[projectName] = new Project(title, description, dueDate, notes, completed);
     projects.push(window[projectName]);
+    setStorage();
 }
 
 function markProjectAsComplete(project) {
@@ -30,11 +32,13 @@ function markProjectAsComplete(project) {
   else {
     project.completed = true;
   }
+  setStorage();
   console.log(projects);
 }
 
 function deleteProject(project) {
   projects.shift(project);
+  setStorage();
 }
 
 function editProject(project, title, description, dueDate, notes) {
@@ -42,6 +46,7 @@ function editProject(project, title, description, dueDate, notes) {
   project.description = description;
   project.dueDate = dueDate;
   project.notes = notes;
+  setStorage();
 }
 
 export { Project, createProject, projects, markProjectAsComplete, deleteProject, editProject };

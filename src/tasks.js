@@ -1,3 +1,5 @@
+import { setStorage } from './local';
+
 class Task {
     constructor(title, description, dueDate, priority, notes) {
       this.title = title;
@@ -13,6 +15,7 @@ function createTask(project, title, description, dueDate, priority, notes) {
   const taskName = `task${project.taskList.length}`;
   window[taskName] = new Task(title, description, dueDate, priority, notes);
   project.taskList.push(window[taskName]);
+  setStorage();
 }
 
 // function markTaskAsComplete(task) {
@@ -26,11 +29,13 @@ function markTaskAsComplete(task) {
   else if (task.completed == false) {
     task.completed = true;
   }
+  setStorage();
   console.log(task);
 }
 
 function deleteTask(project, task) {
   project.taskList.shift(task);
+  setStorage();
 }
 
 function editTask(task, title, description, dueDate, priority, notes) {
@@ -39,6 +44,7 @@ function editTask(task, title, description, dueDate, priority, notes) {
   task.dueDate = dueDate;
   task.priority = priority;
   task.notes = notes;
+  setStorage();
 }
 
 export { Task, createTask, markTaskAsComplete, deleteTask, editTask };

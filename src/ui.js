@@ -174,7 +174,7 @@ function displayProjectList(projectList, projects) {
         projectList.appendChild(proj);
 
         const projTitle = document.createElement("h4");
-        projTitle.textContent = project.title;
+        projTitle.textContent = `Project Title: ` + project.title;
         proj.appendChild(projTitle);
 
         if (project.completed == true) {

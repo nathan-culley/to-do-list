@@ -405,6 +405,7 @@ function displayNewTaskForm(proj, project) {
     })
 }
 
+//FUNCTION FOR ADDING EACH TASK TO THE TABLE
 function addTableTasks(taskTable, project) {
     for (let task of project.taskList) {
 
@@ -514,6 +515,7 @@ function addTableTasks(taskTable, project) {
     }
 }
 
+// FUNCTION FOR CREATING A MODAL FOR EDITING PROJECTS
 function makeProjectModal(proj, project) {
     const projectModal = document.createElement("dialog");
     projectModal.className = "project-modal";
@@ -629,7 +631,7 @@ function makeProjectModal(proj, project) {
     return projectModal;
 }
 
-
+//FUNCITON FOR CREATING A MODAL FOR EDITNG TASKS
 function makeTaskModal(taskRow, task) {
     const taskModal = document.createElement("dialog");
     taskModal.className = "project-modal";
@@ -702,6 +704,7 @@ function makeTaskModal(taskRow, task) {
     return taskModal;
 }
 
+//FUNCTION FOR REMOVING ALL CHILDREN OF A PARENT NODE
 function removeAllChildNodes(parent) {
     while (parent.firstChild) {
         parent.removeChild(parent.firstChild);

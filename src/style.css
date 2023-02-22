@@ -58,13 +58,14 @@ html {
 /*STANDARD ELEMENTS*/
 
 body {
-  background-color: hsl(var(--prim-HSL-dark));
+  background: linear-gradient(hsl(var(--prim-HSL-dark)), hsl(var(--prim-HSL-offblack)));
 }
 
 #content {
-  border: solid 3px hsl(var(--sec-HSL-neutral));
+  border: solid 3px hsl(var(--sec-HSL-rich));
   border-radius: 10px;
-  background-color: hsl(var(--prim-HSL-richdark));
+  /*background-color: hsl(var(--prim-HSL-richdark));*/
+  background: linear-gradient(hsl(var(--prim-HSL-richdark)), hsl(var(--prim-HSL-richlight)));
   padding: 10px;
   max-width: 700px;
   margin-left: auto;
@@ -76,7 +77,8 @@ body {
 #title {
   font-family: Aladin;
   text-align: center;
-  color: hsl(var(--sec-HSL-neutral));
+  color: hsl(var(--sec-HSL-rich));
+  letter-spacing: 0.15em;
 }
 
 #add-project {
@@ -91,6 +93,10 @@ body {
   flex-direction: column;
 }
 
+label {
+  font-weight: bold;
+}
+
 input {
   background-color: hsl(var(--prim-HSL-palelight));
   border: solid 1px hsl(var(--prim-HSL-dark));
@@ -99,20 +105,26 @@ input {
 }
 
 button {
-  background-color: hsl(var(--sec-HSL-light));
+  /* background-color: hsl(var(--sec-HSL-light)); */
+  background: linear-gradient(90deg, hsl(var(--sec-HSL-light)), hsl(var(--sec-HSL-palelight)));
   border: 1px solid transparent;
-  border-radius: 3px;
+  border-radius: 5px;
   box-shadow: 1px 1px 2px 1px hsl(var(--sec-HSL-neutral));
   margin: 5px;
+  padding: 5px;
   color: hsl(var(--prim-HSL-dark));
+  font-weight: bold;
+  font-family: "Forum";
+  font-size: 16px;
 }
 
 .project-area {
-  border: solid 2px hsl(var(--sec-HSL-neutral));
+  border: solid 2px hsl(var(--sec-HSL-rich));
   border-radius: 5px;
   padding: 5px;
   margin: 10px;
-  background-color: hsl(var(--prim-HSL-palelight));
+  /* background-color: hsl(var(--prim-HSL-palelight)); */
+  background: linear-gradient(-45deg, hsl(var(--prim-HSL-pale)), hsl(var(--prim-HSL-palelight)));
   color: hsl(var(--prim-HSL-richdark));
 }
 
@@ -132,14 +144,14 @@ button {
 }
 
 .proj-details {
-  border: 1px solid hsl(var(--prim-HSL-dark));
+  border: 2px solid hsl(var(--prim-HSL-dark));
   border-radius: 3px;
   padding: 5px;
   margin: 5px;
 }
 
 .proj-tasks {
-  border: 1px solid hsl(var(--prim-HSL-dark));
+  border: 2px solid hsl(var(--prim-HSL-dark));
   border-radius: 3px;
   padding: 5px;
   margin: 5px;

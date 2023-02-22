@@ -2,37 +2,30 @@ import { add } from 'lodash';
 import { Project, createProject, projects, markProjectAsComplete, deleteProject, editProject } from './projects';
 import { Task, createTask, markTaskAsComplete, deleteTask, editTask } from './tasks';
 
+//FUNCTION TO CREATE CONTENT AREA AND PROMPT DISPLAY CREATION
 function Ui() {
     const content = document.createElement("div");
     content.setAttribute("id", "content");
     document.body.appendChild(content);
-
-    
-
     createDisplay(content);
-
-    
 }
-
 let hideComplete = false;
 
-//function to create overall display
-
+//FUNCTION TO GENERATE MAJOR DISPLAY ELEMENTS
 function createDisplay(content) {
     removeAllChildNodes(content);
-    
     const title = document.createElement("h1");
     title.setAttribute("id","title");
     title.textContent = "To-Do Wizard";
     content.appendChild(title);
     createInput(content);
-    displayProjectList(content);
+    displayProjectSection(content);
     //displayTaskList(content);
 }
 
-//function to create new-project form
-
+//FUNCTION TO CREATE NEW-PROJECT FORM 
 function createInput(content) {
+    //add form header
     const addProjectSection = document.createElement("form");
     addProjectSection.setAttribute("id", "add-project");
     content.appendChild(addProjectSection);
@@ -134,9 +127,9 @@ function createInput(content) {
     });
 }
 
-//function to display list of projects
-
-function displayProjectList() {
+//FUNCTION TO DISPLAY PROJECTS SECTION
+function displayProjectSection() {
+    // generate top-matter of projects section
     const projectListSection = document.createElement("div");
     content.appendChild(projectListSection);    
 
@@ -162,6 +155,13 @@ function displayProjectList() {
         createDisplay(content);
     })
     
+    //generate list of projects
+    displayProjectList(projectList, projects);
+}
+
+//FUNCTION TO GENERATE LIST OF PROJECTS
+
+function displayProjectList(projectList, projects) {
     for (let project of projects) {
         if (hideComplete == true) {
             if (project.completed == true) {

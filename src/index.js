@@ -15,6 +15,5 @@ Ui();
 
 //incorporate local storage
 //change event listener triggers for form submissions back to "submit" from "click" to allow form validation again
-//move object-editing portions of edit modals to the projects.js and tasks.js files
 //modularize further
 //make it pretty

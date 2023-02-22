@@ -18,16 +18,10 @@ else {
 
 }
 
-
-
-
-//console.log(projects);
-
-// getStorage();
-
 Ui();
 
-
-//incorporate local storage
+//fix deletion problem (pressing the delete button for a project appears to actually delete the first one). Same for tasks.
+//fix retrieval of notes and due date from storage
 //change event listener triggers for form submissions back to "submit" from "click" to allow form validation again
 //make it pretty
+//clean up code

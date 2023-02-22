@@ -37,7 +37,7 @@ function markProjectAsComplete(project) {
 }
 
 function deleteProject(project) {
-  projects.shift(project);
+  projects.pop(project);
   setStorage();
 }
 

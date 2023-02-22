@@ -34,7 +34,7 @@ function markTaskAsComplete(task) {
 }
 
 function deleteTask(project, task) {
-  project.taskList.shift(task);
+  project.taskList.pop(task);
   setStorage();
 }
 

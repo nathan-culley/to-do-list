@@ -191,7 +191,7 @@ function displayProjectList(projectList, projects) {
         editProjBtn.textContent = "Edit";
         proj.appendChild(editProjBtn);
 
-        const projectModal = makeProjectModal(proj, project);
+        const projectModal = editProjectModal(proj, project);
 
         editProjBtn.addEventListener("click", function() {
             projectModal.showModal();
@@ -479,7 +479,7 @@ function addTableTasks(taskTable, project) {
         editTaskBtn.textContent = "Edit";
         taskActions.appendChild(editTaskBtn);
 
-        const taskModal = makeTaskModal(taskRow, task);
+        const taskModal = editTaskModal(taskRow, task);
 
         editTaskBtn.addEventListener("click", function() {
             taskModal.showModal();
@@ -518,7 +518,7 @@ function addTableTasks(taskTable, project) {
 }
 
 // FUNCTION FOR CREATING A MODAL FOR EDITING PROJECTS
-function makeProjectModal(proj, project) {
+function editProjectModal(proj, project) {
     const projectModal = document.createElement("dialog");
     projectModal.className = "project-modal";
     
@@ -633,8 +633,8 @@ function makeProjectModal(proj, project) {
     return projectModal;
 }
 
-//FUNCITON FOR CREATING A MODAL FOR EDITNG TASKS
-function makeTaskModal(taskRow, task) {
+//FUNCITON FOR CREATING A MODAL FOR EDITING TASKS
+function editTaskModal(taskRow, task) {
     const taskModal = document.createElement("dialog");
     taskModal.className = "project-modal";
     

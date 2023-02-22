@@ -130,6 +130,20 @@ button {
   }
 }
 
+.proj-details {
+  border: 1px solid hsl(var(--prim-HSL-dark));
+  border-radius: 3px;
+  padding: 5px;
+  margin: 5px;
+}
+
+.proj-tasks {
+  border: 1px solid hsl(var(--prim-HSL-dark));
+  border-radius: 3px;
+  padding: 5px;
+  margin: 5px;
+}
+
 dialog {
   background-color: hsl(var(--sec-HSL-offwhite));
   border: 2px solid hsl(var(--sec-HSL-neutral));

@@ -20,6 +20,5 @@ else {
 
 Ui();
 
-
-//make it pretty (switch color scheme from purple to dark blue and gold)
+//convert new task area to modal
 //clean up code

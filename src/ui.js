@@ -223,6 +223,7 @@ function displayProjectList(projectList, projects) {
             else {
                 projTitle.setAttribute("completed", "false");
             }
+            displayProjectDetails(projDetails, project)
             console.log(projects);
         })
 
@@ -277,6 +278,9 @@ function displayProjectList(projectList, projects) {
 
 //FUNCTION TO DISPLAY FURTHER DETAILS ABOUT PROJECT
 function displayProjectDetails(projDetails, project) {
+    //remove existing content
+    removeAllChildNodes(projDetails);
+    
     //display top content of details section
     const detailsTitle = document.createElement("h4");
     detailsTitle.textContent = "Project Details";
@@ -302,7 +306,7 @@ function displayProjectDetails(projDetails, project) {
 
     //display completion
     const completion = document.createElement("li");
-    if (project.completion == true) {
+    if (project.completed == true) {
         completion.textContent = 'Completed: Yes';
     }
     else {

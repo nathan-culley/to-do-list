@@ -160,7 +160,6 @@ function displayProjectSection() {
 }
 
 //FUNCTION TO GENERATE LIST OF PROJECTS
-
 function displayProjectList(projectList, projects) {
     for (let project of projects) {
         if (hideComplete == true) {
@@ -231,18 +230,11 @@ function displayProjectList(projectList, projects) {
             createDisplay(content);
         })
 
-        
-
-
         //give the project item a child div to contain expanded info and inputs
         const expandProj = document.createElement("div");
         expandProj.className = "expand-proj";
         expandProj.setAttribute("expanded", "true");
         proj.appendChild(expandProj);
-
-        
-
-        
 
         //create section to contain the project details and task list
         const expandSections = document.createElement("div");
@@ -276,9 +268,9 @@ function displayProjectList(projectList, projects) {
     }
 }
 
-//function to display info about project
-
+//FUNCTION TO DISPLAY FURTHER DETAILS ABOUT PROJECT
 function displayProjectDetails(projDetails, project) {
+    //display top content of details section
     const detailsTitle = document.createElement("h4");
     detailsTitle.textContent = "Project Details";
     projDetails.appendChild(detailsTitle);
@@ -312,87 +304,18 @@ function displayProjectDetails(projDetails, project) {
     details.appendChild(completion);
 }
 
-//function to display list of tasks under each project
-
+//FUNCTION TO DISPLAY LIST OF TASKS FOR PROJECT
 function displayTaskList(proj, project) {
-    
+    //display top content of task list
     const taskListTitle = document.createElement("h4");
     taskListTitle.textContent = "Tasks";
     proj.appendChild(taskListTitle);
 
     //create a form to add a new task and add it to the expanded section
 
-        const newTaskForm = document.createElement("form");
-        proj.appendChild(newTaskForm);
-        
-        const newTaskButton = document.createElement("button");
-        newTaskButton.textContent = "New Task";
-        newTaskButton.setAttribute("type", "submit");
-        newTaskForm.appendChild(newTaskButton);
-
-        const newTaskTitle = document.createElement("input");
-        newTaskTitle.setAttribute("type", "text");
-        newTaskTitle.setAttribute("name", "add-title");
-        newTaskTitle.setAttribute("value", "Task Title");
-        newTaskTitle.setAttribute("minlength", "0");
-        newTaskTitle.setAttribute("maxlength", "20");
-        newTaskTitle.required = true;
-        newTaskForm.appendChild(newTaskTitle);
-
-        const newTaskDescription = document.createElement("input");
-        newTaskDescription.setAttribute("type", "text");
-        newTaskDescription.setAttribute("name", "add-description");
-        newTaskDescription.setAttribute("value", "Task Description");
-        newTaskTitle.setAttribute("minlength", "0");
-        newTaskTitle.setAttribute("maxlength", "50");
-        newTaskForm.appendChild(newTaskDescription);
-
-        const newTaskDueDate = document.createElement("input");
-        newTaskDueDate.setAttribute("type", "date");
-        newTaskDueDate.setAttribute("name", "add-due-date");
-        newTaskDueDate.setAttribute("value", "Task Due Date");
-        newTaskForm.appendChild(newTaskDueDate);
-
-        const newTaskPriority = document.createElement("input");
-        newTaskPriority.setAttribute("type", "number");
-        newTaskPriority.setAttribute("name", "add-priority");
-        newTaskPriority.setAttribute("value", "Task Priority");
-        newTaskPriority.setAttribute("min", "1");
-        newTaskPriority.setAttribute("max", "5");
-        newTaskForm.appendChild(newTaskPriority);
-
-        const newTaskNotes = document.createElement("input");
-        newTaskNotes.setAttribute("type", "text");
-        newTaskNotes.setAttribute("name", "add-notes");
-        newTaskNotes.setAttribute("value", "Task Notes");
-        newTaskNotes.setAttribute("minlength", "0");
-        newTaskNotes.setAttribute("maxlength", "50");
-        newTaskForm.appendChild(newTaskNotes);
-        
-        newTaskButton.addEventListener("click", function() {
-            event.preventDefault();
+    displayNewTaskForm(proj);
     
-            const formData = new FormData(newTaskForm);
-            const title = formData.get('add-title');
-            const description = formData.get('add-description');
-            const dueDate = formData.get('add-due-date');
-            const priority = formData.get('add-priority');
-            const notes = formData.get('add-notes');
-    
-            createTask(project, title, description, dueDate, priority, notes);
-    
-            console.log(project.taskList);
-            
-            createDisplay(content);
-        })
-    
-    
-    
-    
-    
-    
-    
-    
+    //generate table of current tasks
     const taskTable = document.createElement("table");
     proj.appendChild(taskTable);
     const taskHeader = document.createElement("thead");
@@ -514,6 +437,72 @@ function displayTaskList(proj, project) {
 
     }
 
+}
+
+function displayNewTaskForm(proj) {
+    const newTaskForm = document.createElement("form");
+    proj.appendChild(newTaskForm);
+    
+    const newTaskButton = document.createElement("button");
+    newTaskButton.textContent = "New Task";
+    newTaskButton.setAttribute("type", "submit");
+    newTaskForm.appendChild(newTaskButton);
+
+    const newTaskTitle = document.createElement("input");
+    newTaskTitle.setAttribute("type", "text");
+    newTaskTitle.setAttribute("name", "add-title");
+    newTaskTitle.setAttribute("value", "Task Title");
+    newTaskTitle.setAttribute("minlength", "0");
+    newTaskTitle.setAttribute("maxlength", "20");
+    newTaskTitle.required = true;
+    newTaskForm.appendChild(newTaskTitle);
+
+    const newTaskDescription = document.createElement("input");
+    newTaskDescription.setAttribute("type", "text");
+    newTaskDescription.setAttribute("name", "add-description");
+    newTaskDescription.setAttribute("value", "Task Description");
+    newTaskTitle.setAttribute("minlength", "0");
+    newTaskTitle.setAttribute("maxlength", "50");
+    newTaskForm.appendChild(newTaskDescription);
+
+    const newTaskDueDate = document.createElement("input");
+    newTaskDueDate.setAttribute("type", "date");
+    newTaskDueDate.setAttribute("name", "add-due-date");
+    newTaskDueDate.setAttribute("value", "Task Due Date");
+    newTaskForm.appendChild(newTaskDueDate);
+
+    const newTaskPriority = document.createElement("input");
+    newTaskPriority.setAttribute("type", "number");
+    newTaskPriority.setAttribute("name", "add-priority");
+    newTaskPriority.setAttribute("value", "Task Priority");
+    newTaskPriority.setAttribute("min", "1");
+    newTaskPriority.setAttribute("max", "5");
+    newTaskForm.appendChild(newTaskPriority);
+
+    const newTaskNotes = document.createElement("input");
+    newTaskNotes.setAttribute("type", "text");
+    newTaskNotes.setAttribute("name", "add-notes");
+    newTaskNotes.setAttribute("value", "Task Notes");
+    newTaskNotes.setAttribute("minlength", "0");
+    newTaskNotes.setAttribute("maxlength", "50");
+    newTaskForm.appendChild(newTaskNotes);
+    
+    newTaskButton.addEventListener("click", function() {
+        event.preventDefault();
+
+        const formData = new FormData(newTaskForm);
+        const title = formData.get('add-title');
+        const description = formData.get('add-description');
+        const dueDate = formData.get('add-due-date');
+        const priority = formData.get('add-priority');
+        const notes = formData.get('add-notes');
+
+        createTask(project, title, description, dueDate, priority, notes);
+
+        console.log(project.taskList);
+        
+        createDisplay(content);
+    })
 }
 
 function makeProjectModal(proj, project) {

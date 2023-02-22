@@ -1,33 +1,88 @@
-:root {
-  /* color variables */
-  --main-color: indigo;
-  --accent-color-1: violet;
-  --accent-color-2: purple;
-  --accent-color-3: darkmagenta;
-  --accent-color-4: darkblue;
-  --accent-color-5: white;
-  --accent-color-6: black;
-
-
-}
-
+/*IMPORT FONTS*/
 @font-face {
   font-family: "Aladin";
   src: url(./assets/Aladin-Regular.ttf);
 }
+@font-face {
+  font-family: "Forum";
+  src: url(./assets/Forum-Regular.ttf);
+}
+
+/*TOP-LEVEL RULES*/
+
+:root {
+  /* color variables */
+  --prim-hue: 225;
+  --sec-hue: 50;
+  --tert-hue: 275;
+
+  --prim-HSL-palelight: var(--prim-hue), 20%, 80%;
+  --prim-HSL-pale: var(--prim-hue), 20%, 50%;
+  --prim-HSL-paledark: var(--prim-hue), 20%, 20%;
+  --prim-HSL-light: var(--prim-hue), 50%, 80%;
+  --prim-HSL-neutral: var(--prim-hue), 50%, 50%;
+  --prim-HSL-dark: var(--prim-hue), 50%, 20%;
+  --prim-HSL-richlight: var(--prim-hue), 80%, 80%;
+  --prim-HSL-rich: var(--prim-hue), 80%, 50%;
+  --prim-HSL-richdark: var(--prim-hue), 80%, 20%;
+  --prim-HSL-offwhite: var(--prim-hue), 50%, 95%;
+  --prim-HSL-offblack: var(--prim-hue), 50%, 5%;
+  --prim-HSL-lightgray: var(--prim-hue), 10%, 80%;
+  --prim-HSL-gray: var(--prim-hue), 10%, 50%;
+  --prim-HSL-darkgray: var(--prim-hue), 10%, 20%;
+
+  --sec-HSL-palelight: var(--sec-hue), 20%, 80%;
+  --sec-HSL-pale: var(--sec-hue), 20%, 50%;
+  --sec-HSL-paledark: var(--sec-hue), 20%, 20%;
+  --sec-HSL-light: var(--sec-hue), 50%, 80%;
+  --sec-HSL-neutral: var(--sec-hue), 50%, 50%;
+  --sec-HSL-dark: var(--sec-hue), 50%, 20%;
+  --sec-HSL-richlight: var(--sec-hue), 80%, 80%;
+  --sec-HSL-rich: var(--sec-hue), 80%, 50%;
+  --sec-HSL-richdark: var(--sec-hue), 80%, 20%;
+  --sec-HSL-offwhite: var(--sec-hue), 50%, 95%;
+  --sec-HSL-offblack: var(--sec-hue), 50%, 5%;
+  --sec-HSL-lightgray: var(--sec-hue), 10%, 80%;
+  --sec-HSL-gray: var(--sec-hue), 10%, 50%;
+  --sec-HSL-darkgray: var(--sec-hue), 10%, 20%;
+
+
+
+}
+
+html {
+  color: hsl(var(--prim-HSL-offwhite));
+  font-family: "Forum";
+}
+
+/*STANDARD ELEMENTS*/
+
+body {
+  background-color: hsl(var(--prim-HSL-dark));
+}
 
 #content {
-  border: solid 1px var(--main-color);
+  border: solid 3px hsl(var(--sec-HSL-neutral));
   border-radius: 10px;
+  background-color: hsl(var(--prim-HSL-richdark));
   padding: 10px;
   max-width: 700px;
   margin-left: auto;
   margin-right: auto;
 }
 
+/*OTHER ELEMENTS*/
+
 #title {
   font-family: Aladin;
   text-align: center;
+  color: hsl(var(--sec-HSL-neutral));
+}
+
+#add-project {
+  border: solid 2px hsl(var(--sec-HSL-neutral));
+  border-radius: 5px;
+  padding: 5px;
 }
 
 .input-label {

@@ -43,10 +43,23 @@ function deleteProject(project) {
 }
 
 function editProject(project, title, description, dueDate, notes) {
-  project.title = title;
-  project.description = description;
-  project.dueDate = dueDate;
-  project.notes = notes;
+  if (title != "") {
+    project.title = title;
+
+  }
+  if (description != "") {
+    project.description = description;
+
+  }
+  if (dueDate != "") {
+    project.dueDate = dueDate;
+
+  }
+  if (notes != "") {
+    project.notes = notes;
+
+  }
+
   setStorage();
 }
 

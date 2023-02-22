@@ -22,8 +22,7 @@ Ui();
 
 
 
-//fix deletion of projects (shouldn't be pop either);asdf
 //only make changes when editing a field; leave unused fields unchanged
 //change event listener triggers for form submissions back to "submit" from "click" to allow form validation again
-//make it pretty
+//make it pretty (switch color scheme from purple to dark blue and gold)
 //clean up code

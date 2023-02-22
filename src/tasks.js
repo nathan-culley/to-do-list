@@ -39,11 +39,24 @@ function deleteTask(project, task) {
 }
 
 function editTask(task, title, description, dueDate, priority, notes) {
-  task.title = title;
-  task.description = description;
-  task.dueDate = dueDate;
-  task.priority = priority;
-  task.notes = notes;
+  if (title != "") {
+    task.title = title;
+
+  }
+  if (description != "") {
+    task.description = description;
+
+  }
+  if (dueDate != "") {
+    task.dueDate = dueDate;
+
+  }
+  if (priority != "") {     
+    task.priority = priority;
+  }
+  if (notes != "") {
+    task.notes = notes;
+  }
   setStorage();
 }
 

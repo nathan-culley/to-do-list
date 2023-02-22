@@ -313,7 +313,7 @@ function displayTaskList(proj, project) {
 
     //create a form to add a new task and add it to the expanded section
 
-    displayNewTaskForm(proj);
+    displayNewTaskForm(proj, project);
     
     //generate table of current tasks
     const taskTable = document.createElement("table");
@@ -333,15 +333,91 @@ function displayTaskList(proj, project) {
     taskHeader.appendChild(dueDateHeader);
     taskHeader.appendChild(completeHeader);
 
+    //add tasks to table    
+    addTableTasks(taskTable, project);
+
+}
+
+//FUNCTION FOR GENERATING AND DISPLAYING A FORM TO CREATE A NEW TASK
+function displayNewTaskForm(proj, project) {
+    const newTaskForm = document.createElement("form");
+    proj.appendChild(newTaskForm);
+    
+    const newTaskButton = document.createElement("button");
+    newTaskButton.textContent = "New Task";
+    newTaskButton.setAttribute("type", "submit");
+    newTaskForm.appendChild(newTaskButton);
+
+    const newTaskTitle = document.createElement("input");
+    newTaskTitle.setAttribute("type", "text");
+    newTaskTitle.setAttribute("name", "add-title");
+    newTaskTitle.setAttribute("value", "Task Title");
+    newTaskTitle.setAttribute("minlength", "0");
+    newTaskTitle.setAttribute("maxlength", "20");
+    newTaskTitle.required = true;
+    newTaskForm.appendChild(newTaskTitle);
+
+    const newTaskDescription = document.createElement("input");
+    newTaskDescription.setAttribute("type", "text");
+    newTaskDescription.setAttribute("name", "add-description");
+    newTaskDescription.setAttribute("value", "Task Description");
+    newTaskTitle.setAttribute("minlength", "0");
+    newTaskTitle.setAttribute("maxlength", "50");
+    newTaskForm.appendChild(newTaskDescription);
+
+    const newTaskDueDate = document.createElement("input");
+    newTaskDueDate.setAttribute("type", "date");
+    newTaskDueDate.setAttribute("name", "add-due-date");
+    newTaskDueDate.setAttribute("value", "Task Due Date");
+    newTaskForm.appendChild(newTaskDueDate);
+
+    const newTaskPriority = document.createElement("input");
+    newTaskPriority.setAttribute("type", "number");
+    newTaskPriority.setAttribute("name", "add-priority");
+    newTaskPriority.setAttribute("value", "Task Priority");
+    newTaskPriority.setAttribute("min", "1");
+    newTaskPriority.setAttribute("max", "5");
+    newTaskForm.appendChild(newTaskPriority);
+
+    const newTaskNotes = document.createElement("input");
+    newTaskNotes.setAttribute("type", "text");
+    newTaskNotes.setAttribute("name", "add-notes");
+    newTaskNotes.setAttribute("value", "Task Notes");
+    newTaskNotes.setAttribute("minlength", "0");
+    newTaskNotes.setAttribute("maxlength", "50");
+    newTaskForm.appendChild(newTaskNotes);
+    
+    newTaskButton.addEventListener("click", function() {
+        event.preventDefault();
+
+        const formData = new FormData(newTaskForm);
+        const title = formData.get('add-title');
+        const description = formData.get('add-description');
+        const dueDate = formData.get('add-due-date');
+        const priority = formData.get('add-priority');
+        const notes = formData.get('add-notes');
+
+        createTask(project, title, description, dueDate, priority, notes);
+
+        console.log(project.taskList);
         
+        createDisplay(content);
+    })
+}
+
+function addTableTasks(taskTable, project) {
     for (let task of project.taskList) {
-        // const todo = document.createElement("li");
-        // todo.textContent = task.title + " (" + task.dueDate + "}";
-        // tasks.appendChild(todo);
 
         const taskRow = document.createElement("tr");
-        taskRow.setAttribute("completed", "false");
+        // taskRow.setAttribute("completed", "false");
         taskTable.appendChild(taskRow);
+
+        if (task.completed == true) {
+            taskRow.setAttribute("completed", "true");
+        }
+        else {
+            taskRow.setAttribute("completed", "false");
+        }
 
         const expandTaskRow = document.createElement("tr");
         expandTaskRow.setAttribute("expanded", "false");
@@ -436,73 +512,6 @@ function displayTaskList(proj, project) {
 
 
     }
-
-}
-
-function displayNewTaskForm(proj) {
-    const newTaskForm = document.createElement("form");
-    proj.appendChild(newTaskForm);
-    
-    const newTaskButton = document.createElement("button");
-    newTaskButton.textContent = "New Task";
-    newTaskButton.setAttribute("type", "submit");
-    newTaskForm.appendChild(newTaskButton);
-
-    const newTaskTitle = document.createElement("input");
-    newTaskTitle.setAttribute("type", "text");
-    newTaskTitle.setAttribute("name", "add-title");
-    newTaskTitle.setAttribute("value", "Task Title");
-    newTaskTitle.setAttribute("minlength", "0");
-    newTaskTitle.setAttribute("maxlength", "20");
-    newTaskTitle.required = true;
-    newTaskForm.appendChild(newTaskTitle);
-
-    const newTaskDescription = document.createElement("input");
-    newTaskDescription.setAttribute("type", "text");
-    newTaskDescription.setAttribute("name", "add-description");
-    newTaskDescription.setAttribute("value", "Task Description");
-    newTaskTitle.setAttribute("minlength", "0");
-    newTaskTitle.setAttribute("maxlength", "50");
-    newTaskForm.appendChild(newTaskDescription);
-
-    const newTaskDueDate = document.createElement("input");
-    newTaskDueDate.setAttribute("type", "date");
-    newTaskDueDate.setAttribute("name", "add-due-date");
-    newTaskDueDate.setAttribute("value", "Task Due Date");
-    newTaskForm.appendChild(newTaskDueDate);
-
-    const newTaskPriority = document.createElement("input");
-    newTaskPriority.setAttribute("type", "number");
-    newTaskPriority.setAttribute("name", "add-priority");
-    newTaskPriority.setAttribute("value", "Task Priority");
-    newTaskPriority.setAttribute("min", "1");
-    newTaskPriority.setAttribute("max", "5");
-    newTaskForm.appendChild(newTaskPriority);
-
-    const newTaskNotes = document.createElement("input");
-    newTaskNotes.setAttribute("type", "text");
-    newTaskNotes.setAttribute("name", "add-notes");
-    newTaskNotes.setAttribute("value", "Task Notes");
-    newTaskNotes.setAttribute("minlength", "0");
-    newTaskNotes.setAttribute("maxlength", "50");
-    newTaskForm.appendChild(newTaskNotes);
-    
-    newTaskButton.addEventListener("click", function() {
-        event.preventDefault();
-
-        const formData = new FormData(newTaskForm);
-        const title = formData.get('add-title');
-        const description = formData.get('add-description');
-        const dueDate = formData.get('add-due-date');
-        const priority = formData.get('add-priority');
-        const notes = formData.get('add-notes');
-
-        createTask(project, title, description, dueDate, priority, notes);
-
-        console.log(project.taskList);
-        
-        createDisplay(content);
-    })
 }
 
 function makeProjectModal(proj, project) {

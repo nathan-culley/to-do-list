@@ -14,6 +14,8 @@ function Ui() {
     
 }
 
+let hideComplete = false;
+
 //function to create overall display
 
 function createDisplay(content) {
@@ -136,13 +138,37 @@ function createInput(content) {
 
 function displayProjectList() {
     const projectListSection = document.createElement("div");
-    content.appendChild(projectListSection);
-    
+    content.appendChild(projectListSection);    
 
     const projectList = document.createElement("div");
     projectListSection.appendChild(projectList);
-    projectList.innerHTML = "<h3>Current Projects:</h3>";
+    const projectListHeader = document.createElement("h3");
+    projectListHeader.textContent = "Current Projects:";
+    projectList.appendChild(projectListHeader);
+
+    
+    const hideCompleteBtn = document.createElement("button");
+    hideCompleteBtn.textContent = "Filter Completed Projects";
+    projectList.appendChild(hideCompleteBtn);
+
+    hideCompleteBtn.addEventListener("click", function() {
+        
+        if (hideComplete == false) {
+            hideComplete = true;
+        }
+        else {
+            hideComplete = false;
+        }
+        createDisplay(content);
+    })
+    
     for (let project of projects) {
+        if (hideComplete == true) {
+            if (project.completed == true) {
+                continue;
+            }
+        }
+        
         //create the item representing the project and add it to the project list
         const proj = document.createElement("div");
         proj.setAttribute("id", `project${projects.indexOf(project)}`);

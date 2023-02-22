@@ -1,4 +1,4 @@
-import { projects } from './projects';
+import { Project, projects } from './projects';
 
 function storageAvailable(type) {
     let storage;
@@ -25,4 +25,21 @@ function storageAvailable(type) {
     }
 }
 
-export { storageAvailable };
+function checkProjects() {
+    if (!localStorage.getItem('projects')) {
+        
+        setProjects();
+      } else {
+        getProjects();
+      }
+}
+
+function setProjects() {
+    localStorage.setItem('projects', projects);
+}
+
+function getProjects() {
+    console.log(localStorage.getItem('projects'));
+}
+
+export { storageAvailable, setProjects, getProjects, checkProjects };

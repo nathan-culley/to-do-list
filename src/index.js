@@ -14,7 +14,6 @@ Ui();
 
 
 //add ability to filter by complete and incomplete status
-//update display of project details after toggling completion ("completed" does not update to yes).
 //incorporate local storage
 //change event listener triggers for form submissions back to "submit" from "click" to allow form validation again
 //move object-editing portions of edit modals to the projects.js and tasks.js files

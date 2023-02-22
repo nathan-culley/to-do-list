@@ -17,9 +17,9 @@ class Project {
     }
 }
 
-function createProject(title, description, dueDate, notes) {
+function createProject(title, description, dueDate, notes, completed) {
     const projectName = `project${projects.length}`;
-    window[projectName] = new Project(title, description, dueDate, notes);
+    window[projectName] = new Project(title, description, dueDate, notes, completed);
     projects.push(window[projectName]);
 }
 
@@ -27,7 +27,7 @@ function markProjectAsComplete(project) {
   if (project.completed == true) {
     project.completed = false;
   }
-  else if (project.completed == false) {
+  else {
     project.completed = true;
   }
   console.log(projects);

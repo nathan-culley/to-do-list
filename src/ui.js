@@ -34,7 +34,9 @@ function createInput(content) {
     const addProjectSection = document.createElement("form");
     addProjectSection.setAttribute("id", "add-project");
     content.appendChild(addProjectSection);
-    addProjectSection.innerHTML = "<h3>Add New Project</h3>"
+    const addProjectHeader = document.createElement("h3");
+    addProjectHeader.textContent = "Add New Project";
+    addProjectSection.appendChild(addProjectHeader);
 
     //add title
     const titleInputLabel = document.createElement("div");
@@ -150,6 +152,13 @@ function displayProjectList() {
         projTitle.textContent = project.title;
         proj.appendChild(projTitle);
 
+        if (project.completed == true) {
+            projTitle.setAttribute("completed", "true");
+        }
+        else {
+            projTitle.setAttribute("completed", "false");
+        }
+
         //create an edit button and modal for the project
         const editProjBtn = document.createElement("button");
         editProjBtn.className = "edit-button";
@@ -179,7 +188,7 @@ function displayProjectList() {
             if (project.completed == true) {
                 projTitle.setAttribute("completed", "true");
             }
-            else if (project.completed == false) {
+            else {
                 projTitle.setAttribute("completed", "false");
             }
             console.log(projects);

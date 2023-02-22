@@ -33,5 +33,16 @@ function markProjectAsComplete(project) {
   console.log(projects);
 }
 
-export { Project, createProject, projects, markProjectAsComplete };
+function deleteProject(project) {
+  projects.shift(project);
+}
+
+function editProject(project, title, description, dueDate, notes) {
+  project.title = title;
+  project.description = description;
+  project.dueDate = dueDate;
+  project.notes = notes;
+}
+
+export { Project, createProject, projects, markProjectAsComplete, deleteProject, editProject };
 

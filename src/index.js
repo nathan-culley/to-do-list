@@ -1,6 +1,6 @@
 import _ from 'lodash';
 import './style.css';
-import { Project, createProject, projects, markProjectAsComplete } from './projects';
+import { Project, createProject, projects, markProjectAsComplete, deleteProject } from './projects';
 import { Task, createTask, markTaskAsComplete } from './tasks';
 import { Ui } from './ui';
 
@@ -13,8 +13,8 @@ console.log(projects);
 Ui();
 
 
-//add ability to filter by complete and incomplete status
 //incorporate local storage
 //change event listener triggers for form submissions back to "submit" from "click" to allow form validation again
 //move object-editing portions of edit modals to the projects.js and tasks.js files
+//modularize further
 //make it pretty

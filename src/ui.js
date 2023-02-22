@@ -1,6 +1,6 @@
 import { add } from 'lodash';
-import { Project, createProject, projects, markProjectAsComplete } from './projects';
-import { Task, createTask, markTaskAsComplete } from './tasks';
+import { Project, createProject, projects, markProjectAsComplete, deleteProject, editProject } from './projects';
+import { Task, createTask, markTaskAsComplete, deleteTask, editTask } from './tasks';
 
 function Ui() {
     const content = document.createElement("div");
@@ -226,7 +226,7 @@ function displayProjectList() {
         deleteProjBtn.textContent = "Delete";
         proj.appendChild(deleteProjBtn);
         deleteProjBtn.addEventListener("click", function() {
-            projects.shift(project);
+            deleteProject(project);
             console.log("delete");
             createDisplay(content);
         })
@@ -505,7 +505,7 @@ function displayTaskList(proj, project) {
         deleteTaskBtn.textContent = "Delete";
         taskActions.appendChild(deleteTaskBtn);
         deleteTaskBtn.addEventListener("click", function() {
-            project.taskList.shift(task);
+            deleteTask(project, task);
             console.log("delete");
             createDisplay(content);
         })
@@ -618,10 +618,7 @@ function makeProjectModal(proj, project) {
         const dueDate = formData.get('add-due-date');
         const notes = formData.get('add-notes');
 
-        project.title = title;
-        project.description = description;
-        project.dueDate = dueDate;
-        project.notes = notes;
+        editProject(project, title, description, dueDate, notes);
 
         console.log(projects);
         
@@ -696,12 +693,7 @@ function makeTaskModal(taskRow, task) {
             const priority = formData.get('add-priority');
             const notes = formData.get('add-notes');
     
-            task.title = title;
-            task.description = description;
-            task.dueDate = dueDate;
-            task.priority = priority;
-            task.notes = notes;
-    
+            editTask(task, title, description, dueDate, priority, notes);
             
             createDisplay(content);
         })

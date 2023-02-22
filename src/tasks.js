@@ -29,5 +29,17 @@ function markTaskAsComplete(task) {
   console.log(task);
 }
 
-export { Task, createTask, markTaskAsComplete };
+function deleteTask(project, task) {
+  project.taskList.shift(task);
+}
+
+function editTask(task, title, description, dueDate, priority, notes) {
+  task.title = title;
+  task.description = description;
+  task.dueDate = dueDate;
+  task.priority = priority;
+  task.notes = notes;
+}
+
+export { Task, createTask, markTaskAsComplete, deleteTask, editTask };
 

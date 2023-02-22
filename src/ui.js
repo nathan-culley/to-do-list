@@ -537,11 +537,15 @@ function addTableTasks(taskTable, project) {
 function editProjectModal(proj, project) {
     const projectModal = document.createElement("dialog");
     projectModal.className = "project-modal";
+
+    const projectModalHeader = document.createElement("h3");
+    projectModalHeader.textContent = "Edit Project";
+    projectModal.appendChild(projectModalHeader);
     
     const addProjectSection = document.createElement("form");
-    addProjectSection.setAttribute("id", "add-project");
+    addProjectSection.setAttribute("class", "edit-project");
     projectModal.appendChild(addProjectSection);
-    addProjectSection.innerHTML = "<h3>Add New Project</h3>"
+    // addProjectSection.innerHTML = "<h3>Edit New Project</h3>"
 
     //add title
     const titleInputLabel = document.createElement("div");
@@ -653,38 +657,77 @@ function editProjectModal(proj, project) {
 function newTaskModal(proj, project) {
     const taskModal = document.createElement("dialog");
     taskModal.className = "project-modal";
+
+    const taskModalHeader = document.createElement("h3");
+    taskModalHeader.textContent = "Add New Task";
+    taskModal.appendChild(taskModalHeader);
     
     const newTaskForm = document.createElement("form");
     newTaskForm.className = "new-task";
     taskModal.appendChild(newTaskForm);
-    
-    const newTaskButton = document.createElement("button");
-    newTaskButton.textContent = "New Task";
-    newTaskButton.setAttribute("type", "submit");
-    newTaskForm.appendChild(newTaskButton);
 
+    //add title
+    const titleInputLabel = document.createElement("div");
+    titleInputLabel.className = "input-label";
+    newTaskForm.appendChild(titleInputLabel);
+
+    const addTitleLabel = document.createElement("label");
+    addTitleLabel.setAttribute("for", "add-title");
+    addTitleLabel.textContent = "Task Title";
+    titleInputLabel.appendChild(addTitleLabel);
+    
     const newTaskTitle = document.createElement("input");
     newTaskTitle.setAttribute("type", "text");
     newTaskTitle.setAttribute("name", "add-title");
-    newTaskTitle.setAttribute("value", "Task Title");
+    // newTaskTitle.setAttribute("value", "Task Title");
     newTaskTitle.setAttribute("minlength", "0");
     newTaskTitle.setAttribute("maxlength", "20");
     newTaskTitle.required = true;
-    newTaskForm.appendChild(newTaskTitle);
+    titleInputLabel.appendChild(newTaskTitle);
+
+    //add description
+    const descriptionInputLabel = document.createElement("div");
+    descriptionInputLabel.className = "input-label";
+    newTaskForm.appendChild(descriptionInputLabel);
+
+    const addDescriptionLabel = document.createElement("label");
+    addDescriptionLabel.setAttribute("for", "add-title");
+    addDescriptionLabel.textContent = "Task Description";
+    descriptionInputLabel.appendChild(addDescriptionLabel);
 
     const newTaskDescription = document.createElement("input");
     newTaskDescription.setAttribute("type", "text");
     newTaskDescription.setAttribute("name", "add-description");
-    newTaskDescription.setAttribute("value", "Task Description");
-    newTaskTitle.setAttribute("minlength", "0");
-    newTaskTitle.setAttribute("maxlength", "50");
-    newTaskForm.appendChild(newTaskDescription);
+    // newTaskDescription.setAttribute("value", "Task Description");
+    newTaskDescription.setAttribute("minlength", "0");
+    newTaskDescription.setAttribute("maxlength", "50");
+    descriptionInputLabel.appendChild(newTaskDescription);
+
+    //add due date
+    const dueDateInputLabel = document.createElement("div");
+    dueDateInputLabel.className = "input-label";
+    newTaskForm.appendChild(dueDateInputLabel);
+
+    const addDueDateLabel = document.createElement("label");
+    addDueDateLabel.setAttribute("for", "add-title");
+    addDueDateLabel.textContent = "Task Due Date";
+    dueDateInputLabel.appendChild(addDueDateLabel);
 
     const newTaskDueDate = document.createElement("input");
     newTaskDueDate.setAttribute("type", "date");
     newTaskDueDate.setAttribute("name", "add-due-date");
     newTaskDueDate.setAttribute("value", "Task Due Date");
-    newTaskForm.appendChild(newTaskDueDate);
+    dueDateInputLabel.appendChild(newTaskDueDate);
+
+    //add priority
+    const priorityInputLabel = document.createElement("div");
+    priorityInputLabel.className = "input-label";
+    newTaskForm.appendChild(priorityInputLabel);
+
+    const addPriorityLabel = document.createElement("label");
+    addPriorityLabel.setAttribute("for", "add-title");
+    addPriorityLabel.textContent = "Task Priority";
+    priorityInputLabel.appendChild(addPriorityLabel);
 
     const newTaskPriority = document.createElement("input");
     newTaskPriority.setAttribute("type", "number");
@@ -692,7 +735,17 @@ function newTaskModal(proj, project) {
     newTaskPriority.setAttribute("value", "Task Priority");
     newTaskPriority.setAttribute("min", "1");
     newTaskPriority.setAttribute("max", "5");
-    newTaskForm.appendChild(newTaskPriority);
+    priorityInputLabel.appendChild(newTaskPriority);
+
+    //add notes
+    const notesInputLabel = document.createElement("div");
+    notesInputLabel.className = "input-label";
+    newTaskForm.appendChild(notesInputLabel);
+
+    const addNotesLabel = document.createElement("label");
+    addNotesLabel.setAttribute("for", "add-title");
+    addNotesLabel.textContent = "Task Notes";
+    notesInputLabel.appendChild(addNotesLabel);
 
     const newTaskNotes = document.createElement("input");
     newTaskNotes.setAttribute("type", "text");
@@ -700,7 +753,12 @@ function newTaskModal(proj, project) {
     newTaskNotes.setAttribute("value", "Task Notes");
     newTaskNotes.setAttribute("minlength", "0");
     newTaskNotes.setAttribute("maxlength", "50");
-    newTaskForm.appendChild(newTaskNotes);
+    notesInputLabel.appendChild(newTaskNotes);
+
+    const newTaskButton = document.createElement("button");
+    newTaskButton.textContent = "New Task";
+    newTaskButton.setAttribute("type", "submit");
+    newTaskForm.appendChild(newTaskButton);
     
     newTaskButton.addEventListener("click", function() {
         event.preventDefault();
@@ -717,6 +775,14 @@ function newTaskModal(proj, project) {
         console.log(project.taskList);
         
         createDisplay(content);
+    })
+
+    const closeModalBtn = document.createElement("button");
+    closeModalBtn.textContent = "Cancel";
+    closeModalBtn.setAttribute("type", "submit");
+    newTaskForm.appendChild(closeModalBtn);
+    closeModalBtn.addEventListener("click", function() {
+        taskModal.close();
     })
 
 

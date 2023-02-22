@@ -21,4 +21,6 @@ else {
 Ui();
 
 //convert new task area to modal
+//UI not updating 'completed: no' again for complete projects
 //clean up code
+//add ability to hide completed tasks

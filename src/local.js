@@ -64,10 +64,11 @@ function getStorage() {
       projects.length = 0;
   
       for (let storedProject of storedProjects) {
-        const project = new Project(storedProject.title, storedProject.description);
+        const project = new Project(storedProject.title, storedProject.description, storedProject.dueDate, storedProject.notes);
+        project.completed = storedProject.completed;
         
         for (let storedTask of storedProject.taskList) {
-          const task = new Task(storedTask.title, storedTask.description, storedTask.dueDate);
+          const task = new Task(storedTask.title, storedTask.description, storedTask.dueDate, storedTask.priority, storedTask.notes);
           task.completed = storedTask.completed;
           project.taskList.push(task);
         }

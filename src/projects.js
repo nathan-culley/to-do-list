@@ -37,7 +37,8 @@ function markProjectAsComplete(project) {
 }
 
 function deleteProject(project) {
-  projects.pop(project);
+  //projects.pop(project);
+  projects.splice(projects.indexOf(project), 1);
   setStorage();
 }
 

@@ -53,14 +53,16 @@
 html {
   color: hsl(var(--prim-HSL-offwhite));
   font-family: "Forum";
+
+  background: linear-gradient(hsl(var(--prim-HSL-dark)), hsl(var(--prim-HSL-offblack)));
+  background-size: cover;
 }
 
 /*STANDARD ELEMENTS*/
 
-body {
-  background: linear-gradient(hsl(var(--prim-HSL-dark)), hsl(var(--prim-HSL-offblack)));
-  background-size: cover;
-}
+/* body {
+  
+} */
 
 #content {
   border: solid 3px hsl(var(--sec-HSL-rich));

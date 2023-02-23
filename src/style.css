@@ -59,6 +59,7 @@ html {
 
 body {
   background: linear-gradient(hsl(var(--prim-HSL-dark)), hsl(var(--prim-HSL-offblack)));
+  background-size: cover;
 }
 
 #content {
